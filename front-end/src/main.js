@@ -3,6 +3,7 @@ import App from './App.vue'
 import './main.css';
 import * as VueRouter from 'vue-router';
 import VeranstaltungsSeite from './seiten/VeranstaltungsSeite.vue';
+import NeueVeranstaltung from './seiten/NeueVeranstaltung.vue';
 
 createApp(App)
 .use(VueRouter.createRouter({
@@ -10,7 +11,12 @@ createApp(App)
     routes: [{
       path: '/veranstaltungen',
       component: VeranstaltungsSeite,
-    }]
+    }, {
+      path: '/neueVeranstaltung',
+      component: NeueVeranstaltung,
+    }
+  
+  ]
 }))
 
 .mount('#app')

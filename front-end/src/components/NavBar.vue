@@ -1,14 +1,15 @@
 <template>
-<div>
   <nav>
     <ul>
-        <li><a href="#">Startseite</a></li>
+        <router-link to="/veranstaltungen">
+            <li><a href="#">Startseite</a></li>
+        </router-link>
+        
         <li><a href="#">Genehmigt</a></li>
         <li><a href="#">Nicht-genehmigt</a></li>
         <li><a href="#">Admin</a></li>
     </ul>
 </nav>
-</div>
 </template>
 
 

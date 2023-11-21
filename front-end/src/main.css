@@ -1,7 +1,9 @@
+  /* Alles für die NavBar */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    border: 0;
 }
 
 nav {
@@ -10,9 +12,10 @@ nav {
 
 ul {
     list-style-type: none;
-    margin: 0;
+    margin: 0;  
     padding: 0;
     overflow: hidden;
+    border: none;
 }
 
 li {
@@ -23,10 +26,134 @@ li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 20px;
     text-decoration: none;
 }
 
 li a:hover {
     background-color: #111;
+}
+  
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  
+  .box {
+    background-color: #f0f0f0;
+    border: 2px solid #333;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Button Veranstaltungen*/
+.custom-button {
+    display: inline-flex;
+    margin-right: 10px;;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #333;
+    color: #ffffff;
+    border: 2px solid #3a3939;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: sans-serif;
+  }
+  
+  .custom-button:hover {
+    background-color: #333;
+    border-color: #3a3939;
+    color: #ffffff;
+  }
+
+    /* Suchfeld */
+  .search-form {
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    align-items: baseline;
+  }
+  
+  .search-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  
+  .search-button {
+    display: flex;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Hover-Effekt für den Suchbutton */
+  .search-button:hover {
+    background-color: #747676;
+  }
+
+  /* Eingabe Formular zum Erstellen einer Veranstaltung */
+  /* Allgemeine Formatierung */
+#eventForm {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Stil für Labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Stil für Texteingabefelder und Textarea */
+input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+/* Stil für den Submit-Button */
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Änderung des Mauszeigers bei Überfahren des Submit-Buttons */
+input[type="submit"]:hover {
+  background-color: #747676;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
