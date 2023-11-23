@@ -1,8 +1,8 @@
 export const AlleVeranstaltungen = [{
-    id: '1',
+        
     veranstaltungsname: 'Heidenheimer Weihnachtsmarkt',
     datum: '02.02.2022',
-    ort: 'Brunnenplatz',
+    Ort: 'Brunnenplatz',
     preis: '0,00€',
     genehmigung: true,
 }, {

@@ -17,7 +17,9 @@
 
 <div>
   <VeranstaltungDetail/>
+<br>
 </div>
+
 </template>
 
 <script>
