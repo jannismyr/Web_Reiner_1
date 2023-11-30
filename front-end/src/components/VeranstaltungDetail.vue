@@ -1,14 +1,12 @@
 <template>
  <div class="container">
     <div class="box">
-      <div
-        v-for="Veranstaltung in AlleVeranstaltungen" 
-        :key="Veranstaltung.id">
-          <h3>{{ Veranstaltung.veranstaltungsname }}</h3>
-          <h4>{{ Veranstaltung.datum }}</h4>
-          <h4>{{ Veranstaltung.ort }}</h4>
-          <h4>{{ Veranstaltung.preis }}</h4>
-          <h4>{{ Veranstaltung.genehmigung }}</h4>
+      <div>
+          <h3>{{ Name }}</h3>
+          <h4>{{new Date(Datum).toLocaleDateString() }}</h4>
+          <h4>{{ Ort }}</h4>
+          <h4>{{ Preis }}</h4>
+          <h4>{{ Genehmigung }}</h4>
       </div>
     </div>
 
@@ -22,6 +20,13 @@
 
     export default {
         name: "VeranstaltungDetail",
+        props:{
+          Name:String,
+          Datum:String,
+          Ort:String,
+          Preis:Number,
+          Genehmigung:Boolean,
+        },
         data() {
             return{
               AlleVeranstaltungen: [],

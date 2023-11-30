@@ -1,7 +1,7 @@
 <template>
   <h1>Anlegen einer neuen Veranstaltung</h1>
 
-  <div>
+  
       <form @submit.prevent="validateForm" id="eventForm">
   <label for="eventName">Veranstaltungsname:</label>
   <input type="text" id="eventName" name="eventName" v-model="this.Veranstaltung.Name"  ><br><br>
@@ -20,7 +20,6 @@
 
   <input type="submit"  value="Veranstaltung erstellen">
    </form>
-  </div>
   </template>
 
 
@@ -45,10 +44,12 @@ methods: {
   validateForm() {
     const eventName = this.Veranstaltung.Name;
     const eventLocation = this.Veranstaltung.Ort;
+    let regex1 = /^(?!\s*$)[A-Za-z0-9\s]+$/
 
     // Switch für verschiedene Eingabefelder
     switch (true) {
-      case !eventName.match(/^(?!\s*$)[A-Za-z0-9\s]+$/):
+      case  !regex1.test(eventName):
+      
         alert('Ungültiger Veranstaltungsname!');
         break;
 
@@ -56,8 +57,21 @@ methods: {
         alert('Ungültiger Ort!');
         break;
 
+      case !eventPrice.match(d+$):
+        alert('Ungültiger Preis!');
+        break;
+
+     /* case !eventDate.match((0[1-9]|1[0-2])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d$):
+        alert('Ungültiges Datum!');
+        break;
+
+      case !eventLocation.match(/^(?!\s*$)[A-Za-z0-9\s]+$/):
+        alert('Ungültiger Ort!');
+        break;
+        */
+       
       default:
-        console.log('Formular ist gültig!');
+        alert('Formular ist gültig!');
         break;
     }
   },

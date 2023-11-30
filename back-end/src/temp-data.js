@@ -1,18 +1,22 @@
 export const AlleVeranstaltungen = [{
-        
-    veranstaltungsname: 'Heidenheimer Weihnachtsmarkt',
+    id: '1',   
+    name: 'Heidenheimer Weihnachtsmarkt',
     datum: '02.02.2022',
-    Ort: 'Brunnenplatz',
-    preis: '0,00€',
+    ort: 'Brunnenplatz',
+    preis: '0,00',
     genehmigung: true,
 }, {
     id: '2',
-    name: 'Rummel',
-    ort: 'Rummelplatz',
+    name: 'Felix Rave',
+    datum: '01.01.0001',
+    ort: 'Rummel',
+    preis: '24,00',
     genehmigung: true,
 }, {
     id: '3',
-    name: 'Felix Rave',
-    ort: 'WG Schnaitheimer Strasse',
+    name: 'Reinorgeln',
+    datum: '02.02.2022',
+    ort: 'Simons Haus',
+    preis: '0,00',
     genehmigung: false,
 }];
