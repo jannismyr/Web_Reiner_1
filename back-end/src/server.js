@@ -20,11 +20,26 @@ app.get('/api/veranstaltungen/:veranstaltungId', (req, res) => {
 });
 
 app.post('/api/veranstaltungen', (req, res) => {
-   const veranstaltungId = req.body.id;
-   const NewVeranstaltung  = AlleVeranstaltungen.find(veranstaltung => veranstaltung.id === veranstaltungId);
-   AlleVeranstaltungen.push(NewVeranstaltung);
-   res.json(AlleVeranstaltungen)
-});
+
+    console.log('Vor dem Hinzufügen', AlleVeranstaltungen);
+    
+    const neueVeranstaltung = {                                                             //Eingabeformat: JSON
+       id: req.body.id,                                                                     // "id": "neueID",                                                                  // 
+       name: req.body.name,                                                                 // "name": "Meine Veranstaltung",
+       datum: req.body.datum,                                                               // "datum": "TT.MM.JJJJ",
+       ort: req.body.ort,                                                                   // "ort": "ein Ort"
+       preis: req.body.preis,                                                               // "preis": 12.34
+       genehmigung: req.body.genehmigung,                                                   // "genehmigung": true/false
+          };
+ 
+    AlleVeranstaltungen.push(neueVeranstaltung);
+
+    console.log('Nach dem Hinzufügen', AlleVeranstaltungen);
+
+    res.json(AlleVeranstaltungen);
+ });
+ 
+ 
 
 app.delete('/api/veranstaltungen/:veranstaltungId', (req, res) => {
     const veranstaltungId = req.params.veranstaltungId;
