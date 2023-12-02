@@ -24,6 +24,7 @@
 
 
   <script>
+  import axios from 'axios';
 export default {
 name: 'NeueVeranstaltung',
 data () {
@@ -51,6 +52,7 @@ methods: {
     let regex1 = /^(?!\s*$)[A-Za-z0-9\s]+$/
     let regex2 = /^\d+(\.\d{1,2})?$/
 
+    let errorMessage = null;
  
     // Switch für verschiedene Eingabefelder
     switch (true) {
@@ -71,11 +73,30 @@ methods: {
         break;
        
       default:
-        alert('Formular ist gültig!');
         break;
     }
+    if (errorMessage) {
+        alert(errorMessage);
+      } else {
+        const formData = {
+          name: this.Veranstaltung.Name,
+          datum: this.Veranstaltung.Datum,
+          ort: this.Veranstaltung.Ort,
+          preis: this.Veranstaltung.Preis,
+          genehmigung: false /* hier setze den Wert für die Genehmigung, true/false */,
+        };
+
+        axios.post('/api/veranstaltungen', formData)
+          .then(response => {
+            console.log('Antwort der API:', response.data);
+            // Füge hier weitere Aktionen nach dem Hinzufügen der Veranstaltung hinzu
+          })
+          .catch(error => {
+            console.error('Fehler bei der Anfrage:', error);
+          });
+        }
+    },
   },
-},
 };
 
   </script>
