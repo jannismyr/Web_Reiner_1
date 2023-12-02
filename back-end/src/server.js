@@ -1,5 +1,6 @@
 import express from 'express';
-import {AlleVeranstaltungen as AlleVeranstaltungenRaw} from './temp-data.js'
+import {AlleVeranstaltungen as AlleVeranstaltungenRaw} from './temp-data.js';
+import NeueVeranstaltungsId from './IDGenerator.js';
 
 let AlleVeranstaltungen = AlleVeranstaltungenRaw;
 
@@ -23,13 +24,13 @@ app.post('/api/veranstaltungen', (req, res) => {
 
     console.log('Vor dem Hinzufügen', AlleVeranstaltungen);
     
-    const neueVeranstaltung = {                                                             //Eingabeformat: JSON
-       id: req.body.id,                                                                     // "id": "neueID",                                                                  // 
+    const neueVeranstaltung = {                                                             // Eingabeformat: JSON
+       id: NeueVeranstaltungsId(AlleVeranstaltungen).toString(),                            // "id": wird generiert (höchste vorhandene + 1),    
        name: req.body.name,                                                                 // "name": "Meine Veranstaltung",
        datum: req.body.datum,                                                               // "datum": "TT.MM.JJJJ",
        ort: req.body.ort,                                                                   // "ort": "ein Ort"
        preis: req.body.preis,                                                               // "preis": 12.34
-       genehmigung: req.body.genehmigung,                                                   // "genehmigung": true/false
+       genehmigung: req.body.genehmigung,                                                   // "genehmigung": true/false abs
           };
  
     AlleVeranstaltungen.push(neueVeranstaltung);
