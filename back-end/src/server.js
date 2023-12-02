@@ -30,6 +30,7 @@ app.post('/api/veranstaltungen', (req, res) => {
        datum: req.body.datum,                                                               // "datum": "TT.MM.JJJJ",
        ort: req.body.ort,                                                                   // "ort": "ein Ort"
        preis: req.body.preis,                                                               // "preis": 12.34
+       beschreibung: req.body.beschreibung,                                                 // "beschreiung": "eine beschreibung"
        genehmigung: req.body.genehmigung,                                                   // "genehmigung": true/false abs
           };
  
