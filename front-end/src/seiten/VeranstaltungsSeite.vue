@@ -22,6 +22,7 @@
   :Datum="Veranstaltung.datum"
   :Ort="Veranstaltung.ort"
   :Preis="Veranstaltung.preis"
+  :Beschreibung="Veranstaltung.beschreibung"
   :Genehmigung="Veranstaltung.genehmigung"
   />
 <br>
