@@ -67,6 +67,3 @@ Endpunkte
 
 Denke daran, dass die genaue Implementierung von der genauen Struktur deiner Anwendung, den Datenbankoperationen und anderen spezifischen Anforderungen abhängt.
 
-
-	
-	
