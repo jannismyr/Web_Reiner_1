@@ -17,11 +17,13 @@ app.get('/hello', (req, res) => {
 app.get('/api/veranstaltungen', (req, res) => {
     res.json(AlleVeranstaltungen);
 });
+
 // Api für nicht genehmigte Veranstaltungen
 app.get('/api/veranstaltungen/nicht-genehmigt', (req, res) => {
     const veranstaltung = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.genehmigung === false);
     res.json(veranstaltung)
 })
+
 // Api für genehmigte Veranstaltungen
 app.get('/api/veranstaltungen/genehmigt', (req, res) => {
     const veranstaltung = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.genehmigung === true);
@@ -72,16 +74,23 @@ app.post('/api/veranstaltungen', (req, res) => {                                
 
 // Suche für Genehmigte Veranstaltungen
 app.get('/api/suche', (req, res) => {
+<<<<<<< Updated upstream
     const stichwort = req.query.Name;
 
     console.log(stichwort)
     const veranstaltung = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.genehmigung === true);
+=======
+    const { stichwort } = req.query;
+    const veranstaltungen = AlleVeranstaltungen;
+
+>>>>>>> Stashed changes
     if (!stichwort) {
         return res.status(400).json({ error: 'Suchbegriff fehlt' });
     }
 
-    const gefundeneVeranstaltungen = veranstaltung.filter(veranstaltung =>
-        veranstaltung.name.toLowerCase().includes(stichwort.toLowerCase())
+    const gefundeneVeranstaltungen = veranstaltungen.filter(veranstaltung =>
+        veranstaltung.name.toLowerCase().includes(stichwort.toLowerCase()) ||
+        veranstaltung.ort.toLowerCase().includes(stichwort.toLowerCase())
     );
 
     if (gefundeneVeranstaltungen.length === 0) {
@@ -90,6 +99,7 @@ app.get('/api/suche', (req, res) => {
 
     res.json(gefundeneVeranstaltungen);
 });
+
 
 
  // Veranstaltung löschen
