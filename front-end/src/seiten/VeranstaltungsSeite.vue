@@ -55,7 +55,6 @@
 </template>
 
 <script>
-
 import VeranstaltungDetail from '../components/VeranstaltungDetail.vue'
 import axios from 'axios';
 
@@ -67,36 +66,57 @@ export default {
   data(){
     return{
       AlleVeranstaltungen: [],
+      gefundeneVeranstaltungen: [],
       searchTerm: '',
-
-      
+      isLoading: false,
+      error: null,
     }
   },
   methods: {
     async search() {
-  if (!this.searchTerm) {
-    this.gefundeneVeranstaltungen = this.AlleVeranstaltungen;
-    return; // Wenn kein Suchbegriff vorhanden ist, alle Veranstaltungen anzeigen
-  }
+      this.isLoading = true;
+      this.error = null;
 
-  const stichwort = this.searchTerm.toLowerCase();
+      if (!this.searchTerm) {
+        this.gefundeneVeranstaltungen = this.AlleVeranstaltungen;
+        this.isLoading = false;
+        return;
+      }
 
-  try {
-    const response = await axios.get('/api/suche', {
-      params: { stichwort },
-    });
-    this.gefundeneVeranstaltungen = response.data;
-  } catch (error) {
-    console.error('Fehler bei der Suche:', error.message);
-  }
-},
+      const stichwort = this.searchTerm.toLowerCase();
+
+      try {
+        const response = await axios.get('/api/suche', {
+          params: { stichwort },
+        });
+        if (response.data.error) {
+          this.error = response.data.error;
+        } else if (response.data.message) {
+          this.gefundeneVeranstaltungen = [];
+          this.error = response.data.message;
+        } else {
+          this.gefundeneVeranstaltungen = response.data;
+        }
+      } catch (error) {
+        console.error('Fehler bei der Suche:', error.message);
+        this.error = 'Fehler bei der Kommunikation mit dem Server.';
+      } finally {
+        this.isLoading = false;
+      }
+    },
 
     async fetchAlleVeranstaltungen() {
+      this.isLoading = true;
+      this.error = null;
       try {
         const response = await axios.get('/api/veranstaltungen');
         this.AlleVeranstaltungen = response.data;
+        this.gefundeneVeranstaltungen = response.data;
       } catch (error) {
         console.error('Fehler beim Abrufen der Veranstaltungen:', error.message);
+        this.error = 'Fehler beim Laden der Veranstaltungen.';
+      } finally {
+        this.isLoading = false;
       }
     },
   },
