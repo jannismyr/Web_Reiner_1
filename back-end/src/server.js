@@ -72,7 +72,9 @@ app.post('/api/veranstaltungen', (req, res) => {                                
 
 // Suche für Genehmigte Veranstaltungen
 app.get('/api/suche', (req, res) => {
-    const { stichwort } = req.query;
+    const stichwort = req.query.Name;
+
+    console.log(stichwort)
     const veranstaltung = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.genehmigung === true);
     if (!stichwort) {
         return res.status(400).json({ error: 'Suchbegriff fehlt' });
