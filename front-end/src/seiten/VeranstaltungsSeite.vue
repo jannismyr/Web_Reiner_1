@@ -8,14 +8,14 @@
   <button class="custom-button">Gewählte Veranstaltung löschen</button>
 
     <div>
-     <form class="search-form" >
+     <form class="search-form" @submit.prevent="search" >
        <input type="text" class="search-input" v-model="searchTerm" placeholder="Suche...">
     <button type="submit" class="search-button">Suche</button>
   </form>
   </div>
 </div>
   
-<div v-if="searchTerm === ''">
+<div v-if="searchTerm.length === 0">
     <div>
       <VeranstaltungDetail v-for="Veranstaltung in AlleVeranstaltungen"
         :key="Veranstaltung.id"
@@ -25,14 +25,16 @@
         :Preis="Veranstaltung.preis"
         :Beschreibung="Veranstaltung.beschreibung"
         :Genehmigung="Veranstaltung.genehmigung"
+        :veranstaltungId="Veranstaltung.id"
+        @veranstaltungDeleted="AlleVeranstaltungen = $event"
       />
       <br>
     </div>
   </div>
 
   <div v-else>
-    <div v-if="filteredVeranstaltungen.length > 0">
-      <VeranstaltungDetail v-for="Veranstaltung in filteredVeranstaltungen"
+    <div v-if="searchTerm.length > 0">
+      <VeranstaltungDetail v-for="Veranstaltung in gefundeneVeranstaltungen"
         :key="Veranstaltung.id"
         :Name="Veranstaltung.name"
         :Datum="Veranstaltung.datum"
@@ -40,6 +42,8 @@
         :Preis="Veranstaltung.preis"
         :Beschreibung="Veranstaltung.beschreibung"
         :Genehmigung="Veranstaltung.genehmigung"
+        :veranstaltungId="Veranstaltung.id"
+        @veranstaltungDeleted="AlleVeranstaltungen = $event"
       />
       <br>
     </div>
@@ -64,24 +68,40 @@ export default {
     return{
       AlleVeranstaltungen: [],
       searchTerm: '',
+
+      
     }
   },
-  computed: {
-    filteredVeranstaltungen() {
-      const searchTermLowerCase = this.searchTerm.toLowerCase();
-      return this.AlleVeranstaltungen.filter(veranstaltung =>
-        veranstaltung.name.toLowerCase().includes(this.searchTerm.toLowerCase())||
-      veranstaltung.ort.toLowerCase().includes(searchTermLowerCase)
-      );
-    }
+  methods: {
+    async search() {
+  if (!this.searchTerm) {
+    this.gefundeneVeranstaltungen = this.AlleVeranstaltungen;
+    return; // Wenn kein Suchbegriff vorhanden ist, alle Veranstaltungen anzeigen
+  }
+
+  const stichwort = this.searchTerm.toLowerCase();
+
+  try {
+    const response = await axios.get('/api/suche', {
+      params: { stichwort },
+    });
+    this.gefundeneVeranstaltungen = response.data;
+  } catch (error) {
+    console.error('Fehler bei der Suche:', error.message);
+  }
+},
+
+    async fetchAlleVeranstaltungen() {
+      try {
+        const response = await axios.get('/api/veranstaltungen');
+        this.AlleVeranstaltungen = response.data;
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Veranstaltungen:', error.message);
+      }
+    },
   },
-
-  async created() {
-         const response = await axios.get('/api/veranstaltungen');
-         const AlleVeranstaltungen = response.data;
-         this.AlleVeranstaltungen = AlleVeranstaltungen;
-        }
-
-}
-
+  created() {
+    this.fetchAlleVeranstaltungen();
+  },
+};
 </script>

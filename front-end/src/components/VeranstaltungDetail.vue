@@ -8,6 +8,8 @@
           <h4>Preis: {{ Preis }}</h4>
           <h4>Beschreibung: {{ Beschreibung }}</h4>
           <h4>Genehmigung: {{ Genehmigung }}</h4>
+      <button @click="deleteVeranstaltung">Veranstaltung Löschen</button>
+      <p>Veranstaltung ID: {{ veranstaltungId }}</p>
       </div>
     </div>
 
@@ -28,6 +30,7 @@
           Preis:Number,
           Beschreibung:String,
           Genehmigung:Boolean,
+          veranstaltungId:String,
         },
         data() {
             return{
@@ -38,6 +41,20 @@
          const response = await axios.get('/api/veranstaltungen');
          const AlleVeranstaltungen = response.data;
          this.AlleVeranstaltungen = AlleVeranstaltungen;
-        }
+        },
+        methods: {
+    async deleteVeranstaltung() {
+      try {
+        // Annahme: `veranstaltungId` wird als Prop übergeben
+        await axios.delete(`/api/veranstaltungen/${this.veranstaltungId}`);
+        
+        // Aktualisiere die Liste der Veranstaltungen nach dem Löschen
+        const response = await axios.get('/api/veranstaltungen');
+        this.$emit('veranstaltungDeleted', response.data); // Event auslösen, um die Liste in der Elternkomponente zu aktualisieren
+      } catch (error) {
+        console.error("Fehler beim Löschen der Veranstaltung", error);
+      }
     }
-    </script>
+  }
+};
+</script>
