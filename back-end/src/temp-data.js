@@ -5,6 +5,7 @@ export const AlleVeranstaltungen = [{
     ort: 'Brunnenplatz',
     preis: '0,00',
     genehmigung: true,
+    Zeitstempel: "2023-12-04T12:36:56.908Z"
 }, {
     id: '2',
     name: 'Felix Rave',
@@ -12,6 +13,7 @@ export const AlleVeranstaltungen = [{
     ort: 'Rummel',
     preis: '24,00',
     genehmigung: true,
+    Zeitstempel: "2023-12-05T12:36:56.908Z"
 }, {
     id: '3',
     name: 'Reinorgeln',
@@ -19,4 +21,5 @@ export const AlleVeranstaltungen = [{
     ort: 'Simons Haus',
     preis: '0,00',
     genehmigung: false,
+    Zeitstempel: "2023-12-06T12:36:56.908Z"
 }];
