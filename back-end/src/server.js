@@ -7,6 +7,10 @@ let AlleVeranstaltungen = AlleVeranstaltungenRaw;
 const app = express ();
 app.use(express.json());
 
+//Sortiere AlleVeranstaltungen nach "neuster" Veranstaltung
+const Veranstaltungsausgabe = AlleVeranstaltungen.slice().sort((a, b) => {      
+    return new Date(b.Zeitstempel) - new Date(a.Zeitstempel);
+    });
 
 // Test, "historischer Codeschnipsel"
 app.get('/hello', (req, res) => {
@@ -15,7 +19,7 @@ app.get('/hello', (req, res) => {
 
 // Api für alle Veranstaltungen
 app.get('/api/veranstaltungen', (req, res) => {
-    res.json(AlleVeranstaltungen);
+    res.json(Veranstaltungsausgabe);
 });
 
 // Api für nicht genehmigte Veranstaltungen
@@ -23,6 +27,10 @@ app.get('/api/veranstaltungen/nicht-genehmigt', (req, res) => {
     const veranstaltung = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.genehmigung === false);
     res.json(veranstaltung)
 })
+
+// Api zum Genehmigen
+
+
 
 // Api für genehmigte Veranstaltungen
 app.get('/api/veranstaltungen/genehmigt', (req, res) => {
@@ -51,7 +59,9 @@ app.get('/api/veranstaltungen/:veranstaltungId', (req, res) => {
 
 // Neue Veranstaltung erstellen
 app.post('/api/veranstaltungen', (req, res) => {                                            //Übergabeformat:
-    try {                                                                                   //JSON
+    try {  
+    const timestamp = new Date();                                                           // Erstellen des Timestamps                
+                                                                                            // JSON:
         const neueVeranstaltung = {                                                         // {
             id: NeueVeranstaltungsId(AlleVeranstaltungen).toString(),                       //
             name: req.body.name,                                                            // "name": "ein Name",
@@ -60,11 +70,16 @@ app.post('/api/veranstaltungen', (req, res) => {                                
             preis: req.body.preis,                                                          // "preis": "1.23"
             beschreibung: req.body.beschreibung,                                            // "beschreibung": "eine Beschreibung"
             genehmigung: req.body.genehmigung || false,                                     // "genehmigung": wenn nicht anders angegeben: false
+            Zeitstempel: timestamp.toISOString(),                                           // Zeitstempel
         };                                                                                  // }
 
         AlleVeranstaltungen.push(neueVeranstaltung);
 
-        res.status(201).json(AlleVeranstaltungen);
+        const Veranstaltungsausgabe = AlleVeranstaltungen.slice().sort((a, b) => {      
+            return new Date(b.Zeitstempel) - new Date(a.Zeitstempel);
+            });
+
+        res.status(201).json(Veranstaltungsausgabe);
     } catch (error) {
         // Fehler beim Parsen des JSON-Objekts
         console.error('Fehler beim Parsen des JSON-Objekts:', error);

@@ -6,6 +6,7 @@ export const AlleVeranstaltungen = [{
     preis: '0,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: true,
+    Zeitstempel: "2023-12-04T12:36:56.908Z"
 }, {
     id: '2',
     name: 'Felix Rave',
@@ -14,6 +15,7 @@ export const AlleVeranstaltungen = [{
     preis: '24,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: true,
+    Zeitstempel: "2023-12-05T12:36:56.908Z"
 }, {
     id: '3',
     name: 'Reinorgeln',
@@ -54,4 +56,5 @@ export const AlleVeranstaltungen = [{
     preis: '82,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
+    Zeitstempel: "2023-12-06T12:36:56.908Z"
 }];
