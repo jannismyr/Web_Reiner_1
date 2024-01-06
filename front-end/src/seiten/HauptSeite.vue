@@ -5,7 +5,6 @@
   <router-link to="/neueVeranstaltung">
     <button class="custom-button">Neue Veranstaltung</button>
   </router-link>
-  <button class="custom-button">Gewählte Veranstaltung löschen</button>
 
     <div>
      <form class="search-form" @submit.prevent="search" >
@@ -17,7 +16,7 @@
   
 <div v-if="searchTerm.length === 0">
     <div>
-      <VeranstaltungDetail v-for="Veranstaltung in AlleVeranstaltungen"
+      <VeranstaltungAllg v-for="Veranstaltung in AlleVeranstaltungen"
         :key="Veranstaltung.id"
         :Name="Veranstaltung.name"
         :Datum="Veranstaltung.datum"
@@ -34,7 +33,7 @@
 
   <div v-else>
     <div v-if="searchTerm.length > 0">
-      <VeranstaltungDetail v-for="Veranstaltung in gefundeneVeranstaltungen"
+      <VeranstaltungAllg v-for="Veranstaltung in gefundeneVeranstaltungen"
         :key="Veranstaltung.id"
         :Name="Veranstaltung.name"
         :Datum="Veranstaltung.datum"
@@ -55,13 +54,13 @@
 </template>
 
 <script>
-import VeranstaltungDetail from '../components/VeranstaltungDetail.vue'
+import VeranstaltungAllg from '../components/VeranstaltungAllg.vue'
 import axios from 'axios';
 
 export default {
-  name: 'VeranstaltungsSeite',
+  name: 'HauptSeite',
   components: {
-    VeranstaltungDetail,
+    VeranstaltungAllg,
   },
   data(){
     return{

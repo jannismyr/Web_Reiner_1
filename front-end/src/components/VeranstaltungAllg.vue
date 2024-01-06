@@ -9,6 +9,11 @@
           <h4>Beschreibung: {{ Beschreibung }}</h4>
           <h4>Genehmigung: {{ Genehmigung }}</h4>
       <button @click="deleteVeranstaltung">Veranstaltung Löschen</button>
+      <p></p>
+      <router-link :to="`/detailAnsicht/${veranstaltungId}`">
+        <button>Veranstaltung näher anzeigen</button>
+      </router-link>
+     
       <p>Veranstaltung ID: {{ veranstaltungId }}</p>
       </div>
     </div>
@@ -22,7 +27,7 @@
     import axios from 'axios';
 
     export default {
-        name: "VeranstaltungDetail",
+        name: "VeranstaltungAllg",
         props:{
           Name:String,
           Datum:String,
@@ -45,7 +50,7 @@
         methods: {
     async deleteVeranstaltung() {
       try {
-        // Annahme: `veranstaltungId` wird als Prop übergeben
+        // `veranstaltungId` wird als Prop übergeben
         await axios.delete(`/api/veranstaltungen/${this.veranstaltungId}`);
         
         // Aktualisiere die Liste der Veranstaltungen nach dem Löschen

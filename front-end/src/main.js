@@ -2,21 +2,34 @@
   import App from './App.vue'
   import './main.css';
   import * as VueRouter from 'vue-router';
-  import VeranstaltungsSeite from './seiten/VeranstaltungsSeite.vue';
+  import HauptSeite from './seiten/HauptSeite.vue';
   import NeueVeranstaltung from './seiten/NeueVeranstaltung.vue';
+  import DetailAnsicht from './seiten/DetailAnsicht.vue';
+  import NichtGenehmigtSeite from './seiten/NichtGenehmigtSeite.vue';
+  import BearbeitenSeite from './seiten/BearbeitenSeite.vue';
+
 
   createApp(App)
   .use(VueRouter.createRouter({
       history: VueRouter.createWebHistory(process.env.BASE_URL),
       routes: [{
-        path: '/veranstaltungen',
-        component: VeranstaltungsSeite,
+        path: '/hauptseite',
+        component: HauptSeite,
       }, {
         path: '/neueVeranstaltung',
         component: NeueVeranstaltung,
-      },  {
+      }, {
+        path: '/detailAnsicht/:Id',
+        component: DetailAnsicht,
+      }, {
+        path: '/nicht-genehmigt',
+        component: NichtGenehmigtSeite,
+      }, {
+        path: '/bearbeiten/:Id',
+        component: BearbeitenSeite,
+      }, {
         path: '/',
-        redirect: '/veranstaltungen', // Hier auf die gewünschte Unterseite verweisen
+        redirect: '/hauptseite', // Hier auf die gewünschte Unterseite verweisen
       },
     
     ]
