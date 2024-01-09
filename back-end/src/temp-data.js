@@ -1,5 +1,5 @@
 export const AlleVeranstaltungen = [{
-    id: '1',   
+    id: '1',    
     name: 'Heidenheimer Weihnachtsmarkt',
     datum: '02.02.2022',
     ort: 'Brunnenplatz',

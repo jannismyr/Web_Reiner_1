@@ -17,8 +17,17 @@
         
       />
     </div>
+
+    <button class="genehmigen-button" @click="genehmigeVeranstaltung(veranstaltungId)">
+        Veranstaltung genehmigen
+    </button>
+
+    <button class="ablehnen-button" @click="genehmigeVeranstaltung(veranstaltungId)">
+        Veranstaltung ablehnen
+    </button>
+
+    
   </template>
-  
   <script>
   import VeranstaltungSpezif from '../components/VeranstaltungSpezif.vue'
   import axios from 'axios';

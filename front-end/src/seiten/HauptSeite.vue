@@ -8,13 +8,13 @@
 
     <div>
      <form class="search-form" @submit.prevent="search" >
-       <input type="text" class="search-input" v-model="searchTerm" placeholder="Suche...">
+       <input type="text" class="search-input" v-model="searchTerm" placeholder="Suche..." @keyup="search">
     <button type="submit" class="search-button">Suche</button>
   </form>
   </div>
 </div>
   
-<div v-if="searchTerm.length === 0">
+
     <div>
       <VeranstaltungAllg v-for="Veranstaltung in AlleVeranstaltungen"
         :key="Veranstaltung.id"
@@ -25,31 +25,10 @@
         :Beschreibung="Veranstaltung.beschreibung"
         :Genehmigung="Veranstaltung.genehmigung"
         :veranstaltungId="Veranstaltung.id"
-        @veranstaltungDeleted="AlleVeranstaltungen = $event"
       />
       <br>
     </div>
-  </div>
 
-  <div v-else>
-    <div v-if="searchTerm.length > 0">
-      <VeranstaltungAllg v-for="Veranstaltung in gefundeneVeranstaltungen"
-        :key="Veranstaltung.id"
-        :Name="Veranstaltung.name"
-        :Datum="Veranstaltung.datum"
-        :Ort="Veranstaltung.ort"
-        :Preis="Veranstaltung.preis"
-        :Beschreibung="Veranstaltung.beschreibung"
-        :Genehmigung="Veranstaltung.genehmigung"
-        :veranstaltungId="Veranstaltung.id"
-        @veranstaltungDeleted="AlleVeranstaltungen = $event"
-      />
-      <br>
-    </div>
-    <div v-else>
-      <p>Keine Veranstaltung gefunden.</p>
-    </div>
-  </div>
   
 </template>
 
@@ -73,7 +52,7 @@ export default {
   },
   methods: {
     async search() {
-      this.isLoading = true;
+    /*  this.isLoading = true;
       this.error = null;
 
       if (!this.searchTerm) {
@@ -81,26 +60,20 @@ export default {
         this.isLoading = false;
         return;
       }
-
-      const stichwort = this.searchTerm.toLowerCase();
+*/
+      
 
       try {
-        const response = await axios.get('/api/suche', {
+        const stichwort = this.searchTerm.toLowerCase();
+        const response = await axios.get(`/api/suche/${"genehmigt"}`, {
           params: { stichwort },
         });
-        if (response.data.error) {
-          this.error = response.data.error;
-        } else if (response.data.message) {
-          this.gefundeneVeranstaltungen = [];
-          this.error = response.data.message;
-        } else {
-          this.gefundeneVeranstaltungen = response.data;
-        }
+       this.AlleVeranstaltungen = await response.data;
+
       } catch (error) {
         console.error('Fehler bei der Suche:', error.message);
         this.error = 'Fehler bei der Kommunikation mit dem Server.';
-      } finally {
-        this.isLoading = false;
+
       }
     },
 
@@ -108,7 +81,7 @@ export default {
       this.isLoading = true;
       this.error = null;
       try {
-        const response = await axios.get('/api/veranstaltungen');
+        const response = await axios.get('/api/veranstaltungen/genehmigt');
         this.AlleVeranstaltungen = response.data;
         this.gefundeneVeranstaltungen = response.data;
       } catch (error) {

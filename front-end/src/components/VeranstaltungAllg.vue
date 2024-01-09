@@ -42,20 +42,22 @@
               AlleVeranstaltungen: [],
             }
         },
-        async created() {
-         const response = await axios.get('/api/veranstaltungen');
+     /*   async created() {
+         const response = await axios.get('/api/veranstaltungen/');
          const AlleVeranstaltungen = response.data;
          this.AlleVeranstaltungen = AlleVeranstaltungen;
-        },
+        },*/
+
         methods: {
     async deleteVeranstaltung() {
       try {
         // `veranstaltungId` wird als Prop übergeben
-        await axios.delete(`/api/veranstaltungen/${this.veranstaltungId}`);
+         await axios.delete(`/api/veranstaltungen/${this.veranstaltungId}`);
+         window.location.reload();        
         
         // Aktualisiere die Liste der Veranstaltungen nach dem Löschen
-        const response = await axios.get('/api/veranstaltungen');
-        this.$emit('veranstaltungDeleted', response.data); // Event auslösen, um die Liste in der Elternkomponente zu aktualisieren
+        //const response = await axios.get('/api/veranstaltungen');
+       /* this.$emit('veranstaltungDeleted', response.data); // Event auslösen, um die Liste in der Elternkomponente zu aktualisieren*/
       } catch (error) {
         console.error("Fehler beim Löschen der Veranstaltung", error);
       }

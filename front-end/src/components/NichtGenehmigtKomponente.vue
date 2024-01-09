@@ -16,7 +16,8 @@
          <p>Veranstaltung ID: {{ veranstaltungId }}</p>
          </div>
        </div>
-   
+
+      
      </div>
        </template>
        

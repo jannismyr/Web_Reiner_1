@@ -34,7 +34,7 @@ app.get('/api/veranstaltungen/nicht-genehmigt', (req, res) => {
 
 // Api für genehmigte Veranstaltungen
 app.get('/api/veranstaltungen/genehmigt', (req, res) => {
-    const veranstaltung = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.genehmigung === true);
+    const veranstaltung = AlleVeranstaltungen.filter((veranstaltung) => {return veranstaltung.genehmigung === true});
     res.json(veranstaltung)
 })
 
@@ -108,12 +108,50 @@ app.get('/api/suche', (req, res) => {
     res.json(gefundeneVeranstaltungen);
 });
 
+app.get('/api/suche/:status', (req, res) => {
+    const { stichwort } = req.query;
+    const veranstaltungen = AlleVeranstaltungen;
+    const status = req.params.status;
+    let gefundeneVeranstaltungen = [];
+
+    if (!stichwort) {
+        return res.status(400).json({ error: 'Suchbegriff fehlt' });
+    }
+    switch (status) {
+        case "genehmigt":
+             gefundeneVeranstaltungen = veranstaltungen.filter((veranstaltung) =>
+                {return veranstaltung.genehmigung === true && 
+                (veranstaltung.name.toLowerCase().includes(stichwort.toLowerCase()) ||
+                veranstaltung.ort.toLowerCase().includes(stichwort.toLowerCase()))}
+            );
+            break;
+
+            case "nicht genehmigt":
+                gefundeneVeranstaltungen = veranstaltungen.filter((veranstaltung) =>
+                   {return veranstaltung.genehmigung === false && 
+                   (veranstaltung.name.toLowerCase().includes(stichwort.toLowerCase()) ||
+                   veranstaltung.ort.toLowerCase().includes(stichwort.toLowerCase()))}
+               );
+            break;
+    
+        default:
+            break;
+    }
+    
+
+    if (gefundeneVeranstaltungen.length === 0) {
+        return res.json({ message: 'Keine Veranstaltungen gefunden' });
+    }
+
+    res.json(gefundeneVeranstaltungen);
+});
+
 
 
  // Veranstaltung löschen
-
 app.delete('/api/veranstaltungen/:veranstaltungId', (req, res) => {
     const veranstaltungId = req.params.veranstaltungId;
+
     AlleVeranstaltungen = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.id !== veranstaltungId);
     res.json(AlleVeranstaltungen)
 })
