@@ -87,7 +87,43 @@ app.post('/api/veranstaltungen', (req, res) => {                                
     }
 });
 
-// Suche für Genehmigte Veranstaltungen
+//API zum Bearbeiten einer Veranstaltung
+
+app.put('/api/veranstaltungen/:veranstaltungId', (req, res) => {
+    try {
+        const veranstaltungId = req.params.veranstaltungId;
+        const bearbeiteteVeranstaltungIndex = AlleVeranstaltungen.findIndex(veranstaltung => veranstaltung.id === veranstaltungId);
+
+        if (bearbeiteteVeranstaltungIndex === -1) {
+            res.status(404).json({ error: '404: Keine Veranstaltung gefunden' });
+            return;
+        }
+
+        const { id, ...rest } = req.body;                                   // ID kann nicht bearbeitet werden
+
+        const Bearbeitungszeitpunkt = new Date();                           // Zeitstempel für Bearbeitungszeitpunkt
+
+        const bearbeiteteVeranstaltung = {
+            id: veranstaltungId,
+            Zeitstempel: Bearbeitungszeitpunkt.toISOString(),
+            ...rest,
+        };
+
+        AlleVeranstaltungen[bearbeiteteVeranstaltungIndex] = bearbeiteteVeranstaltung;
+
+        const Veranstaltungsausgabe = AlleVeranstaltungen.slice().sort((a, b) => {
+            return new Date(b.Zeitstempel) - new Date(a.Zeitstempel);
+        });
+
+        res.status(200).json(Veranstaltungsausgabe);
+    } catch (error) {
+        console.error('Fehler beim Bearbeiten der Veranstaltung:', error);
+        res.status(400).json({ error: 'Ungültiges JSON-Format oder Fehler beim Bearbeiten der Veranstaltung' });
+    }
+});
+
+
+// Suche für Veranstaltungen
 app.get('/api/suche', (req, res) => {
     const { stichwort } = req.query;
     const veranstaltungen = AlleVeranstaltungen;
