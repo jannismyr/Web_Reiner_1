@@ -52,30 +52,31 @@ export default {
   },
   methods: {
     async search() {
-    /*  this.isLoading = true;
-      this.error = null;
-
-      if (!this.searchTerm) {
-        this.gefundeneVeranstaltungen = this.AlleVeranstaltungen;
-        this.isLoading = false;
-        return;
-      }
-*/
-      
-
       try {
-        const stichwort = this.searchTerm.toLowerCase();
-        const response = await axios.get(`/api/suche/${"genehmigt"}`, {
-          params: { stichwort },
-        });
-       this.AlleVeranstaltungen = await response.data;
+          if (!this.searchTerm) {
+            const response = await axios.get('/api/veranstaltungen/genehmigt');
+            this.AlleVeranstaltungen = response.data;
+          } else {
+            const stichwort = this.searchTerm.toLowerCase();
+            const response = await axios.get(`/api/suche/${"genehmigt"}`, {
+              params: { stichwort },
+            });
+            // Überprüfen Sie, ob die Antwort Daten enthält
+            if (response.data && response.data.length > 0) {
+              this.AlleVeranstaltungen = response.data;
+            } else {
+              // Setzen Sie AlleVeranstaltungen auf ein leeres Array und zeigen Sie eine Meldung an
+              this.AlleVeranstaltungen = [];
+              this.error = 'Keine Veranstaltungen gefunden.';
+            }
+          }
+        } catch (error) {
+          console.error('Fehler bei der Suche:', error.message);
+          this.error = 'Fehler bei der Kommunikation mit dem Server.';
+        }
 
-      } catch (error) {
-        console.error('Fehler bei der Suche:', error.message);
-        this.error = 'Fehler bei der Kommunikation mit dem Server.';
-
-      }
-    },
+        this.isLoading = false;
+      },
 
     async fetchAlleVeranstaltungen() {
       this.isLoading = true;
