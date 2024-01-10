@@ -18,13 +18,13 @@
       />
     </div>
 
-    <button class="genehmigen-button" @click="genehmigeVeranstaltung(veranstaltungId)">
-        Veranstaltung genehmigen
-    </button>
-
-    <button class="ablehnen-button" @click="genehmigeVeranstaltung(veranstaltungId)">
-        Veranstaltung ablehnen
-    </button>
+    <button 
+      class="genehmigen-button" 
+      @click="genehmigeVeranstaltung($route.params.Id)"
+      v-if="selectedVeranstaltung && !selectedVeranstaltung.genehmigung">
+      Veranstaltung genehmigen
+    </button> 
+   
 
     
   </template>
@@ -45,18 +45,17 @@
       };
     },
     async created() {
-      try {
-        const response = await axios.get('/api/veranstaltungen');
-        this.AlleVeranstaltungen = response.data;
-  
-         const selectedId =  this.Id;
-        this.selectedVeranstaltung = this.AlleVeranstaltungen.find(
-          (veranstaltung) => veranstaltung.id === selectedId
-        );
-      } catch (error) {
-        console.error('Fehler beim Abrufen der Veranstaltungen:', error);
-      }
-    },
+  try {
+    // Extrahiere die ID aus den Route-Parametern
+    const selectedId = this.$route.params.Id;
+
+    // Direkter Abruf der spezifischen Veranstaltung anhand ihrer ID
+    const response = await axios.get('/api/veranstaltungen/' + selectedId);
+    this.selectedVeranstaltung = response.data;
+  } catch (error) {
+    console.error('Fehler beim Abrufen der spezifischen Veranstaltung:', error);
+  }
+},
   };
   </script>
   

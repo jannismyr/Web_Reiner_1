@@ -30,41 +30,65 @@
   </template>
   
   <script>
-  import axios from 'axios';
-  
-  export default {
-    name: "BearbeitenKomponente",
-    props: {
-      Name: String,
-      Datum: String,
-      Ort: String,
-      Preis: Number,
-      Beschreibung: String,
-      veranstaltungId: String,
-    },
-    data() {
-      return {
-        veranstaltung: {
-          name: this.Name,
-          datum: this.Datum,
-          ort: this.Ort,
-          preis: this.Preis,
-          beschreibung: this.Beschreibung,
-          id: this.veranstaltungId,
-        },
-      };
-    },
-    methods: {
-      async updateVeranstaltung() {
-        try {
-          await axios.put('/api/veranstaltungen/' + this.veranstaltung.id, this.veranstaltung);
-          alert('Veranstaltung erfolgreich aktualisiert!');
-        } catch (error) {
-          console.error('Fehler beim Aktualisieren der Veranstaltung:', error);
-          alert('Fehler beim Aktualisieren der Veranstaltung.');
-        }
+import axios from 'axios';
+
+export default {
+  name: "BearbeitenKomponente",
+  data() {
+    return {
+      veranstaltung: {
+        name: '',
+        datum: '',
+        ort: '',
+        preis: null,
+        beschreibung: '',
+        id: this.$route.params.Id // ID aus dem Router-Parameter
       },
+    };
+  },
+  created() {
+    this.ladeVeranstaltung();
+  },
+  methods: {
+    async ladeVeranstaltung() {
+    try {
+      const response = await axios.get('/api/veranstaltungen/' + this.veranstaltung.id);
+      let veranstaltungDaten = response.data;
+
+      // Konvertieren Sie das Datum in das richtige Format, falls nötig
+      if (veranstaltungDaten.datum) {
+        veranstaltungDaten.datum = this.formatDate(veranstaltungDaten.datum);
+      }
+
+      this.veranstaltung = veranstaltungDaten;
+    } catch (error) {
+      console.error('Fehler beim Laden der Veranstaltung:', error);
+      alert('Fehler beim Laden der Veranstaltung.');
+    }
+  },
+  formatDate(dateString) {
+    const date = new Date(dateString);
+    let formattedDate = date.getFullYear() + '-' + 
+                        ('0' + (date.getMonth() + 1)).slice(-2) + '-' + 
+                        ('0' + date.getDate()).slice(-2);
+    return formattedDate;
+  },
+    async updateVeranstaltung() {
+      try {
+        // Entfernen von id und Zeitstempel aus den zu sendenden Daten
+        const updateData = { ...this.veranstaltung };
+        delete updateData.id;
+        delete updateData.Zeitstempel;
+        
+        // Senden der aktualisierten Daten an den Server
+        await axios.put('/api/veranstaltungen/' + this.veranstaltung.id, updateData);
+        alert('Veranstaltung erfolgreich aktualisiert!');
+      } catch (error) {
+        console.error('Fehler beim Aktualisieren der Veranstaltung:', error);
+        alert('Fehler beim Aktualisieren der Veranstaltung.');
+      }
     },
-  };
-  </script>
-  
+    
+  },
+};
+</script>

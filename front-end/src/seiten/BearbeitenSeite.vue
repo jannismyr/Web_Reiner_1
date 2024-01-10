@@ -1,8 +1,5 @@
 <template>
     <div>
-      <h1>Hier kannst du deine Veranstaltung BEARBEITEN</h1>
-      <h2>ID QUICK-CHECK:  {{ $route.params.Id }}</h2>
-      <h2 v-if="selectedVeranstaltung">Veranstaltungsname: {{ selectedVeranstaltung.name }}</h2>
 
       <BearbeitenKomponente
         v-if="selectedVeranstaltung"

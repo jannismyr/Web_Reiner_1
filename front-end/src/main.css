@@ -196,18 +196,3 @@ input[type="number"] {
   background-color: #45a049; /* Dunkleres Grün beim Hover */
 }
 
-/* CSS für Ablehnen Button */
-.ablehnen-button {
-  background-color: #c81c1c; /* Grüne Hintergrundfarbe */
-  color: white;             /* Weiße Textfarbe */
-  padding: 10px 20px;       /* Padding innen */
-  border: none;             /* Kein Rand */
-  border-radius: 5px;       /* Abgerundete Ecken */
-  cursor: pointer;          /* Cursor als Zeiger */
-  font-size: 16px;          /* Schriftgröße */
-  transition: 0.3s;         /* Übergangseffekt */
-}
-
-.ablehnen-button:hover {
-  background-color: #e02f2f; /* Dunkleres Grün beim Hover */
-}
