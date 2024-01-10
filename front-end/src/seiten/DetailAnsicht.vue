@@ -18,12 +18,13 @@
       />
     </div>
 
-    <button 
-      class="genehmigen-button" 
-      @click="genehmigeVeranstaltung($route.params.Id)"
+    <!-- Button zum Genehmigen der Veranstaltung -->
+    <button
+      class="genehmigen-button"
+      @click="genehmigeVeranstaltung(selectedVeranstaltung.id)"
       v-if="selectedVeranstaltung && !selectedVeranstaltung.genehmigung">
       Veranstaltung genehmigen
-    </button> 
+    </button>
    
 
     
@@ -56,6 +57,22 @@
     console.error('Fehler beim Abrufen der spezifischen Veranstaltung:', error);
   }
 },
+methods: {
+    async genehmigeVeranstaltung(veranstaltungId) {
+      try {
+        // Senden eines PUT-Requests an die API zum Genehmigen der Veranstaltung
+        await axios.put(`/api/veranstaltungen/genehmigen/${veranstaltungId}`);
+
+        // Aktualisieren der lokal gespeicherten Veranstaltung
+        if (this.selectedVeranstaltung && this.selectedVeranstaltung.id === veranstaltungId) {
+          this.selectedVeranstaltung.genehmigung = true;
+          this.selectedVeranstaltung.Zeitstempel = new Date().toISOString();
+        }
+      } catch (error) {
+        console.error('Fehler beim Genehmigen der Veranstaltung:', error);
+      }
+    },
+  }
   };
   </script>
   
