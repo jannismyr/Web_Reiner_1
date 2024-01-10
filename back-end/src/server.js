@@ -182,7 +182,26 @@ app.get('/api/suche/:status', (req, res) => {
     res.json(gefundeneVeranstaltungen);
 });
 
+ // Veranstaltung genehmigen
 
+ app.put('/api/veranstaltungen/genehmigen/:veranstaltungId', (req, res) => {
+    const veranstaltungId = req.params.veranstaltungId;
+    const veranstaltung = AlleVeranstaltungen.find(veranstaltung => veranstaltung.id === veranstaltungId);
+
+    if (!veranstaltung) {
+        return res.status(404).json({ error: '404: Keine Veranstaltung gefunden' });
+    }
+
+    if (veranstaltung.genehmigung) {
+        return res.status(400).json({ error: '400: Veranstaltung bereits genehmigt' });
+    }
+
+    veranstaltung.genehmigung = true;
+
+    veranstaltung.Zeitstempel = new Date().toISOString();
+
+    res.status(200).json(veranstaltung);
+});
 
  // Veranstaltung löschen
 app.delete('/api/veranstaltungen/:veranstaltungId', (req, res) => {
@@ -191,6 +210,10 @@ app.delete('/api/veranstaltungen/:veranstaltungId', (req, res) => {
     AlleVeranstaltungen = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.id !== veranstaltungId);
     res.json(AlleVeranstaltungen)
 })
+
+
+
+
 // Port anzeige in Konsole
 app.listen(8000, ()=> {
     console.log('Server is listening on port 8000')
