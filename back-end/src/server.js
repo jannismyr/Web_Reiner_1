@@ -1,11 +1,14 @@
 import express from 'express';
 import {AlleVeranstaltungen as AlleVeranstaltungenRaw} from './temp-data.js';
 import NeueVeranstaltungsId from './IDGenerator.js';
+import testdatengenerator from './testdatengenerator.js';
 
 let AlleVeranstaltungen = AlleVeranstaltungenRaw;
 
 const app = express ();
 app.use(express.json());
+app.use(testdatengenerator);
+
 
 //Sortiere AlleVeranstaltungen nach "neuster" Veranstaltung
 const Veranstaltungsausgabe = AlleVeranstaltungen.slice().sort((a, b) => {      
@@ -24,19 +27,26 @@ app.get('/api/veranstaltungen', (req, res) => {
 
 // Api für nicht genehmigte Veranstaltungen
 app.get('/api/veranstaltungen/nicht-genehmigt', (req, res) => {
-    const veranstaltung = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.genehmigung === false);
-    res.json(veranstaltung)
+    const nichtgenehmigteveranstaltungen = AlleVeranstaltungen.filter(veranstaltung => veranstaltung.genehmigung === false);
+
+    const Veranstaltungsausgabe = nichtgenehmigteveranstaltungen.slice().sort((a, b) => {      
+        return new Date(b.Zeitstempel) - new Date(a.Zeitstempel);
+        });
+
+    res.status(200).json(Veranstaltungsausgabe);
 })
-
-// Api zum Genehmigen
-
-
 
 // Api für genehmigte Veranstaltungen
 app.get('/api/veranstaltungen/genehmigt', (req, res) => {
     const veranstaltung = AlleVeranstaltungen.filter((veranstaltung) => {return veranstaltung.genehmigung === true});
-    res.json(veranstaltung)
+
+    const Veranstaltungsausgabe = veranstaltung.slice().sort((a, b) => {      
+        return new Date(b.Zeitstempel) - new Date(a.Zeitstempel);
+        });
+
+    res.status(200).json(Veranstaltungsausgabe);
 })
+
 
 // Api für bestimmte Veranstaltung
 app.get('/api/veranstaltungen/:veranstaltungId', (req, res) => {

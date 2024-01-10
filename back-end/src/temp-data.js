@@ -24,6 +24,7 @@ export const AlleVeranstaltungen = [{
     preis: '0,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
+    Zeitstempel: "2023-12-06T12:36:56.908Z"
 }, {
     id: '4',
     name: 'Jannis Party',
@@ -32,6 +33,7 @@ export const AlleVeranstaltungen = [{
     preis: '45,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
+    Zeitstempel: "2023-12-07T12:36:56.908Z"
 }, {
     id: '5',
     name: 'Fete von Kai',
@@ -40,6 +42,7 @@ export const AlleVeranstaltungen = [{
     preis: '999,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: true,
+    Zeitstempel: "2023-12-08T12:36:56.908Z"
 }, {
     id: '6',
     name: 'Keine Feier ohne Meyer',
@@ -48,6 +51,7 @@ export const AlleVeranstaltungen = [{
     preis: '0,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
+    Zeitstempel: "2023-12-09T12:36:56.908Z"
 }, {
     id: '7',
     name: 'Dicke Party',
@@ -56,5 +60,5 @@ export const AlleVeranstaltungen = [{
     preis: '82,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
-    Zeitstempel: "2023-12-06T12:36:56.908Z"
+    Zeitstempel: "2023-12-10T12:36:56.908Z"
 }];
