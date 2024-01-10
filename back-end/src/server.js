@@ -193,7 +193,6 @@ app.get('/api/suche/:status', (req, res) => {
 });
 
  // Veranstaltung genehmigen
-
  app.put('/api/veranstaltungen/genehmigen/:veranstaltungId', (req, res) => {
     const veranstaltungId = req.params.veranstaltungId;
     const veranstaltung = AlleVeranstaltungen.find(veranstaltung => veranstaltung.id === veranstaltungId);
