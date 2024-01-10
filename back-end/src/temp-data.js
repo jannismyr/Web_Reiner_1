@@ -10,7 +10,7 @@ export const AlleVeranstaltungen = [{
 }, {
     id: '2',
     name: 'Felix Rave',
-    datum: '01.01.0001',
+    datum: '01.01.2025',
     ort: 'Rummel',
     preis: '24,00',
     beschreibung: 'TEST TEST test test',
@@ -51,7 +51,7 @@ export const AlleVeranstaltungen = [{
 }, {
     id: '7',
     name: 'Dicke Party',
-    datum: '13.03.2026',
+    datum: '25.04.2026',
     ort: 'München',
     preis: '82,00',
     beschreibung: 'TEST TEST test test',

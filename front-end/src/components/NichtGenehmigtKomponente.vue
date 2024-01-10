@@ -3,7 +3,7 @@
        <div class="box">
          <div>
              <h3>Name: {{ Name }}</h3>
-             <h4>Datum: {{new Date(Datum).toLocaleDateString() }}</h4>
+             <h4>Datum: {{ formatDatum(Datum) }}</h4>
              <h4>Ort: {{ Ort }}</h4>
              <h4>Preis: {{ Preis }}</h4>
              <h4>Beschreibung: {{ Beschreibung }}</h4>
@@ -47,6 +47,17 @@
             const AlleVeranstaltungen = response.data;
             this.AlleVeranstaltungen = AlleVeranstaltungen;
            },
+           methods: {
+            formatDatum(datumString) {
+              const teile = datumString.split('.');
+              // Stellen Sie sicher, dass das Datum im Format DD-MM-YYYY vorliegt
+              if (teile.length === 3) {
+                const umgeformtesDatum = `${teile[2]}-${teile[1]}-${teile[0]}`;
+                return new Date(umgeformtesDatum).toLocaleDateString();
+              }
+              return 'Ungültiges Datum';
+            }
+          }
     
    };
    </script>
