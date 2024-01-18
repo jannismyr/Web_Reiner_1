@@ -66,6 +66,7 @@ export default {
       alert('Fehler beim Laden der Veranstaltung.');
     }
   },
+  
   formatDate(dateString) {
     const date = new Date(dateString);
     let formattedDate = date.getFullYear() + '-' + 

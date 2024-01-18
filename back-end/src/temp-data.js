@@ -46,19 +46,10 @@ export const AlleVeranstaltungen = [{
 }, {
     id: '6',
     name: 'Keine Feier ohne Meyer',
-    datum: '02.02.2022',
+    datum: '02.02.2028',
     ort: 'Wiesbaden',
     preis: '0,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
     Zeitstempel: "2023-12-09T12:36:56.908Z"
-}, {
-    id: '7',
-    name: 'Dicke Party',
-    datum: '25.04.2026',
-    ort: 'München',
-    preis: '82,00',
-    beschreibung: 'TEST TEST test test',
-    genehmigung: false,
-    Zeitstempel: "2023-12-10T12:36:56.908Z"
 }];
