@@ -9,9 +9,14 @@
              <h4>Beschreibung: {{ Beschreibung }}</h4>
              <h4>Genehmigung: {{ Genehmigung }}</h4>
         
+             <button @click="deleteVeranstaltung">Veranstaltung Löschen</button>
+             <p></p>
+
              <router-link :to="`/detailAnsicht/${veranstaltungId}`">
               <button>Veranstaltung näher anzeigen</button>
             </router-link>
+
+          
 
          <p>Veranstaltung ID: {{ veranstaltungId }}</p>
          </div>
@@ -65,6 +70,20 @@
 
         return 'Ungültiges Datum';
       },
+
+      async deleteVeranstaltung() {
+          try {
+            // `veranstaltungId` wird als Prop übergeben
+            await axios.delete(`/api/veranstaltungen/${this.veranstaltungId}`);
+            window.location.reload();        
+            
+            // Aktualisiere die Liste der Veranstaltungen nach dem Löschen
+            //const response = await axios.get('/api/veranstaltungen');
+          /* this.$emit('veranstaltungDeleted', response.data); // Event auslösen, um die Liste in der Elternkomponente zu aktualisieren*/
+          } catch (error) {
+            console.error("Fehler beim Löschen der Veranstaltung", error);
+          }
+        },
           }
     
    };

@@ -49,19 +49,19 @@
         },*/
 
         methods: {
-    async deleteVeranstaltung() {
-      try {
-        // `veranstaltungId` wird als Prop übergeben
-         await axios.delete(`/api/veranstaltungen/${this.veranstaltungId}`);
-         window.location.reload();        
-        
-        // Aktualisiere die Liste der Veranstaltungen nach dem Löschen
-        //const response = await axios.get('/api/veranstaltungen');
-       /* this.$emit('veranstaltungDeleted', response.data); // Event auslösen, um die Liste in der Elternkomponente zu aktualisieren*/
-      } catch (error) {
-        console.error("Fehler beim Löschen der Veranstaltung", error);
-      }
-    },
+        async deleteVeranstaltung() {
+          try {
+            // `veranstaltungId` wird als Prop übergeben
+            await axios.delete(`/api/veranstaltungen/${this.veranstaltungId}`);
+            window.location.reload();        
+            
+            // Aktualisiere die Liste der Veranstaltungen nach dem Löschen
+            //const response = await axios.get('/api/veranstaltungen');
+          /* this.$emit('veranstaltungDeleted', response.data); // Event auslösen, um die Liste in der Elternkomponente zu aktualisieren*/
+          } catch (error) {
+            console.error("Fehler beim Löschen der Veranstaltung", error);
+          }
+        },
     formatDatum(datumString) {
         // Überprüfung, ob das Datum im Format YYYY-MM-DD vorliegt
         const matchYYYYMMDD = datumString.match(/^(\d{4})-(\d{2})-(\d{2})$/);
