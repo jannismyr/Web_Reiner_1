@@ -5,6 +5,7 @@
   <router-link to="/neueVeranstaltung">
     <button class="custom-button">Neue Veranstaltung</button>
   </router-link>
+  <button class="custom-button" @click="generateTestData">Testdaten generieren</button>
 
     <div>
      <form class="search-form" @submit.prevent="search" >
@@ -34,6 +35,7 @@
 
 <script>
 import VeranstaltungAllg from '../components/VeranstaltungAllg.vue'
+// (import { generateTestData } from '...../back-end/src/testdatengenerator.js';
 import axios from 'axios';
 
 export default {
@@ -92,6 +94,20 @@ export default {
         this.isLoading = false;
       }
     },
+
+    async generateTestData() {
+  try {
+    // Senden einer HTTP-Anfrage an den Express-Server
+    const response = await axios.get('/api/testdatengenerator');
+    console.log("Testdaten erfolgreich generiert: ", response.data);
+
+    // Nach erfolgreichem Abrufen der Testdaten, aktualisieren Sie die Veranstaltungsliste
+    await this.fetchAlleVeranstaltungen();
+  } catch (error) {
+    console.error("Fehler beim Generieren der Testdaten: ", error);
+  }
+}
+
   },
   created() {
     this.fetchAlleVeranstaltungen();

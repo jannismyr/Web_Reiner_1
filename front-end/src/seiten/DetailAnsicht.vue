@@ -25,7 +25,8 @@
       v-if="selectedVeranstaltung && !selectedVeranstaltung.genehmigung">
       Veranstaltung genehmigen
     </button>
-   
+   <p></p>
+   <button class="custom-button" @click="copyLinkToClipboard">Link teilen</button>
 
     
   </template>
@@ -71,6 +72,14 @@ methods: {
       } catch (error) {
         console.error('Fehler beim Genehmigen der Veranstaltung:', error);
       }
+    },
+    copyLinkToClipboard() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        alert("Link wurde in die Zwischenablage kopiert!");
+      }).catch(err => {
+        console.error('Fehler beim Kopieren des Links:', err);
+      });
     },
   }
   };
