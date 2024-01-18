@@ -49,14 +49,22 @@
            },
            methods: {
             formatDatum(datumString) {
-              const teile = datumString.split('.');
-              // Stellen Sie sicher, dass das Datum im Format DD-MM-YYYY vorliegt
-              if (teile.length === 3) {
-                const umgeformtesDatum = `${teile[2]}-${teile[1]}-${teile[0]}`;
-                return new Date(umgeformtesDatum).toLocaleDateString();
-              }
-              return 'Ungültiges Datum';
-            }
+        // Überprüfung, ob das Datum im Format YYYY-MM-DD vorliegt
+        const matchYYYYMMDD = datumString.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if (matchYYYYMMDD) {
+          return `${matchYYYYMMDD[3]}.${matchYYYYMMDD[2]}.${matchYYYYMMDD[1]}`;
+        }
+
+        // Überprüfung, ob das Datum im Format DD-MM-YYYY vorliegt
+        const matchDDMMYYYY = datumString.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+        if (matchDDMMYYYY) {
+          // Verwenden Sie toLocaleDateString, um das Datum im lokalen Format anzuzeigen
+          const umgeformtesDatum = new Date(`${matchDDMMYYYY[3]}-${matchDDMMYYYY[2]}-${matchDDMMYYYY[1]}`);
+          return umgeformtesDatum.toLocaleDateString();
+        }
+
+        return 'Ungültiges Datum';
+      },
           }
     
    };
