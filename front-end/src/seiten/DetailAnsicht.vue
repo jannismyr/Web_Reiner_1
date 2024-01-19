@@ -28,6 +28,23 @@
    <p></p>
    <button class="custom-button" @click="copyLinkToClipboard">Link teilen</button>
 
+     <!-- Formular für das Hinzufügen von Highlights -->
+     <div class="highlight-form">
+      <h3>Highlight hinzufügen</h3>
+      <input type="text" v-model="newHighlight.title" placeholder="Überschrift" class="highlight-form input[type='text']">
+      <textarea v-model="newHighlight.description" placeholder="Beschreibung" maxlength="1024" class="highlight-form textarea"></textarea>
+      <button @click="addHighlight" class="highlight-form button">Hinzufügen</button>
+    </div>
+
+    <!-- Anzeige der Highlights -->
+    <ul class="highlight-list" v-if="selectedVeranstaltung.highlights">
+      <h3>Highlights</h3>
+      <li v-for="highlight in selectedVeranstaltung.highlights" :key="highlight.id">
+        <h4>{{ highlight.title }}</h4>
+        <p>{{ highlight.description }}</p>
+      </li>
+    </ul>
+    
     
   </template>
   <script>
@@ -44,6 +61,10 @@
         AlleVeranstaltungen: [],
         selectedVeranstaltung: null,
         Id: this.$route.params.Id,
+        newHighlight: {
+        title: '',
+        description: ''
+      },
       };
     },
     async created() {
@@ -80,6 +101,10 @@ methods: {
       }).catch(err => {
         console.error('Fehler beim Kopieren des Links:', err);
       });
+    },
+    addHighlight() {
+      // Logik zum Hinzufügen des Highlights zur Veranstaltung
+      // ...
     },
   }
   };
