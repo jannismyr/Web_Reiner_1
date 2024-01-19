@@ -10,11 +10,6 @@ app.use(express.json());
 app.use(testdatengenerator);
 
 
-//Sortiere AlleVeranstaltungen nach "neuster" Veranstaltung
-const Veranstaltungsausgabe = AlleVeranstaltungen.slice().sort((a, b) => {      
-    return new Date(b.Zeitstempel) - new Date(a.Zeitstempel);
-    });
-
 // Test, "historischer Codeschnipsel"
 app.get('/hello', (req, res) => {
     res.send('Hello!');
@@ -22,6 +17,10 @@ app.get('/hello', (req, res) => {
 
 // Api für alle Veranstaltungen
 app.get('/api/veranstaltungen', (req, res) => {
+    const Veranstaltungsausgabe = AlleVeranstaltungen.slice().sort((a, b) => {      
+        return new Date(b.Zeitstempel) - new Date(a.Zeitstempel);
+        });
+    
     res.json(Veranstaltungsausgabe);
 });
 
@@ -172,7 +171,7 @@ app.get('/api/suche/:status', (req, res) => {
             );
             break;
 
-            case "nicht genehmigt":
+            case "nicht-genehmigt":
                 gefundeneVeranstaltungen = veranstaltungen.filter((veranstaltung) =>
                    {return veranstaltung.genehmigung === false && 
                    (veranstaltung.name.toLowerCase().includes(stichwort.toLowerCase()) ||

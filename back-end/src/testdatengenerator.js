@@ -22,9 +22,9 @@ router.get('/api/testdatengenerator', (req, res) => {
 
         AlleVeranstaltungen.push(neueVeranstaltung);
         
-         const Veranstaltungsausgabe = AlleVeranstaltungen
-            .slice()
-            .sort((a, b) => new Date(b.Zeitstempel) - new Date(a.Zeitstempel));
+        const Veranstaltungsausgabe = AlleVeranstaltungen.slice().sort((a, b) => {      
+            return new Date(b.Zeitstempel) - new Date(a.Zeitstempel);
+            });
 
         res.status(201).json(Veranstaltungsausgabe);
 
@@ -35,4 +35,3 @@ router.get('/api/testdatengenerator', (req, res) => {
 });
 
 export default router;
-
