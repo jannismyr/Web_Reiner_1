@@ -101,6 +101,9 @@ export default {
     const response = await axios.get('/api/testdatengenerator');
     console.log("Testdaten erfolgreich generiert: ", response.data);
 
+    // Alert-Benachrichtigung hinzufügen
+    alert("Nicht-genehmigte Testveranstaltung wurde erfolgreich generiert!");
+
     // Nach erfolgreichem Abrufen der Testdaten, aktualisieren Sie die Veranstaltungsliste
     await this.fetchAlleVeranstaltungen();
   } catch (error) {
