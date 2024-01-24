@@ -6,7 +6,9 @@ export const AlleVeranstaltungen = [{
     preis: '0,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: true,
-    Zeitstempel: "2023-12-04T12:36:56.908Z"
+    Zeitstempel: "2023-12-04T12:36:56.908Z",
+    highlights:[],          //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
 }, {
     id: '2',
     name: 'Felix Rave',
@@ -15,7 +17,9 @@ export const AlleVeranstaltungen = [{
     preis: '24,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: true,
-    Zeitstempel: "2023-12-05T12:36:56.908Z"
+    Zeitstempel: "2023-12-05T12:36:56.908Z",
+    highlights:[],      //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
 }, {
     id: '3',
     name: 'Reinorgeln',
@@ -24,7 +28,9 @@ export const AlleVeranstaltungen = [{
     preis: '0,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
-    Zeitstempel: "2023-12-06T12:36:56.908Z"
+    Zeitstempel: "2023-12-06T12:36:56.908Z",
+    highlights:[],      //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
 }, {
     id: '4',
     name: 'Jannis Party',
@@ -33,7 +39,9 @@ export const AlleVeranstaltungen = [{
     preis: '45,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
-    Zeitstempel: "2023-12-07T12:36:56.908Z"
+    Zeitstempel: "2023-12-07T12:36:56.908Z",
+    highlights:[],      //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
 }, {
     id: '5',
     name: 'Fete von Kai',
@@ -42,7 +50,9 @@ export const AlleVeranstaltungen = [{
     preis: '999,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: true,
-    Zeitstempel: "2023-12-08T12:36:56.908Z"
+    Zeitstempel: "2023-12-08T12:36:56.908Z",
+    highlights:[],      //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
 }, {
     id: '6',
     name: 'Keine Feier ohne Meyer',
@@ -51,5 +61,7 @@ export const AlleVeranstaltungen = [{
     preis: '0,00',
     beschreibung: 'TEST TEST test test',
     genehmigung: false,
-    Zeitstempel: "2023-12-09T12:36:56.908Z"
+    Zeitstempel: "2023-12-09T12:36:56.908Z",
+    highlights:[],      //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
 }];

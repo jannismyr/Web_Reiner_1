@@ -219,7 +219,81 @@ app.delete('/api/veranstaltungen/:veranstaltungId', (req, res) => {
     res.json(AlleVeranstaltungen)
 })
 
+//Aufgabe 3
+//Format der Anfrage:
+//{
+//    "highlights": [
+//      {
+//        "überschrift": "Highlight 1",
+//        "beschreibung": "Es passieren Dinge 1"
+//      },
+//      {
+//        "überschrift": "Highlight 2",
+//        "beschreibung": "Es passieren Dinge 2"
+//      }
+//    ]
+//  }
 
+
+app.post('/api/veranstaltungen/:veranstaltungId/highlights', (req, res) => {
+    const veranstaltungId = req.params.veranstaltungId;
+    const veranstaltung = AlleVeranstaltungen.find((v) => v.id === veranstaltungId);
+  
+    if (!veranstaltung) {
+      return res.status(404).json({ error: 'Veranstaltung nicht gefunden' });
+    }
+  
+    const highlights = req.body.highlights;
+  
+    if (!highlights || !Array.isArray(highlights)) {
+      return res.status(400).json({ error: 'Highlights erforderlich und müssen ein Array sein' });
+    }
+  
+    const neuesHighlights = [];
+  
+    for (const highlight of highlights) {
+      const { überschrift, beschreibung } = highlight;
+  
+      if (!überschrift || !beschreibung) {
+        return res.status(400).json({ error: 'Überschrift und Beschreibung erforderlich' });
+      }
+  
+      const neuesHighlightsHighlight = { überschrift, beschreibung };
+      veranstaltung.highlights.push(neuesHighlightsHighlight);
+      neuesHighlights.push(neuesHighlightsHighlight);
+      veranstaltung.highlightmenge = veranstaltung.highlights.length;
+    }
+  
+    res.status(201).json(neuesHighlights);
+  });
+  
+// Highlight löschen
+// funktioniert noch nicht richtig
+
+app.delete('/api/veranstaltungen/:veranstaltungId/highlights/:ueberschrift', (req, res) => {
+    const veranstaltungId = req.params.veranstaltungId;
+    const ueberschrift = req.params.ueberschrift;
+    // Sucht die Veranstaltung nach ID
+    const veranstaltung = AlleVeranstaltungen.find((v) => v.id === veranstaltungId);
+
+    if (!veranstaltung) {
+        return res.status(404).json({ error: 'Veranstaltung nicht gefunden' });
+    }
+
+    // Sucht das Highlight
+    const highlightIndex = veranstaltung.highlights.findIndex(
+        (highlight) => highlight.ueberschrift === ueberschrift
+    );
+
+    if (highlightIndex === -1) {
+        return res.status(404).json({ error: 'Highlight nicht gefunden' });
+    }
+
+    veranstaltung.highlights.splice(highlightIndex, 1);
+    veranstaltung.highlightmenge = veranstaltung.highlights.length;
+
+    res.status(200).json(veranstaltung.highlights);
+});
 
 
 // Port anzeige in Konsole

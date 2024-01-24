@@ -18,6 +18,8 @@ router.get('/api/testdatengenerator', (req, res) => {
             beschreibung: 'Eine automatisch generierte Testveranstaltung',
             genehmigung: false,
             Zeitstempel: timestamp.toISOString(),
+            highlights: [], //Aufgabe 3
+            highlightmenge: 0, //Aufgabe 3
         };
 
         AlleVeranstaltungen.push(neueVeranstaltung);
