@@ -205,11 +205,22 @@ app.get('/api/suche/:status', (req, res) => {
     }
 
     veranstaltung.genehmigung = true;
-
     veranstaltung.Zeitstempel = new Date().toISOString();
+
+    // Audit-Eintrag erstellen
+    const auditEntry = `Veranstaltung ${veranstaltungId} wurde genehmigt am ${veranstaltung.Zeitstempel}\n`;
+
+    fs.appendFile('audit.txt', auditEntry, (err) => {
+        if (err) {
+            console.error('Fehler beim Schreiben des Audit-Eintrags:', err);
+            return res.status(500).json({ error: '500: Interner Serverfehler beim Schreiben des Audit-Eintrags' });
+        }
+        console.log('Änderung protokolliert.');
+    });
 
     res.status(200).json(veranstaltung);
 });
+
 
  // Veranstaltung löschen
 app.delete('/api/veranstaltungen/:veranstaltungId', (req, res) => {
@@ -267,34 +278,20 @@ app.post('/api/veranstaltungen/:veranstaltungId/highlights', (req, res) => {
     res.status(201).json(neuesHighlights);
   });
   
-// Highlight löschen
-// funktioniert noch nicht richtig
+// Highlight anzeigen
 
-app.delete('/api/veranstaltungen/:veranstaltungId/highlights/:ueberschrift', (req, res) => {
+app.get('/api/veranstaltungen/:veranstaltungId/highlights', (req, res) => {
     const veranstaltungId = req.params.veranstaltungId;
-    const ueberschrift = req.params.ueberschrift;
-    // Sucht die Veranstaltung nach ID
     const veranstaltung = AlleVeranstaltungen.find((v) => v.id === veranstaltungId);
 
     if (!veranstaltung) {
         return res.status(404).json({ error: 'Veranstaltung nicht gefunden' });
     }
 
-    // Sucht das Highlight
-    const highlightIndex = veranstaltung.highlights.findIndex(
-        (highlight) => highlight.ueberschrift === ueberschrift
-    );
+    const highlights = veranstaltung.highlights;
 
-    if (highlightIndex === -1) {
-        return res.status(404).json({ error: 'Highlight nicht gefunden' });
-    }
-
-    veranstaltung.highlights.splice(highlightIndex, 1);
-    veranstaltung.highlightmenge = veranstaltung.highlights.length;
-
-    res.status(200).json(veranstaltung.highlights);
+    res.status(200).json(highlights);
 });
-
 
 // Port anzeige in Konsole
 app.listen(8000, ()=> {
