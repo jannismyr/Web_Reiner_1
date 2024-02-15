@@ -1,4 +1,5 @@
 <template>
+    <!-- Anzeige der Detailseite der Veranstaltung -->
     <div class="container">
        <div class="box">
          <div>
@@ -16,8 +17,6 @@
               <button>Veranstaltung näher anzeigen</button>
             </router-link>
 
-          
-
          <p>Veranstaltung ID: {{ veranstaltungId }}</p>
          </div>
        </div>
@@ -25,8 +24,6 @@
       
      </div>
        </template>
-       
-       
        <script>
    
        import axios from 'axios';
@@ -47,6 +44,7 @@
                  AlleVeranstaltungen: [],
                }
            },
+           //Alle nicht genehmigten Veranstaltungen werden vom Backend geladen
            async created() {
             const response = await axios.get('/api/veranstaltungen/nicht-genehmigt');
             const AlleVeranstaltungen = response.data;
@@ -77,9 +75,6 @@
             await axios.delete(`/api/veranstaltungen/${this.veranstaltungId}`);
             window.location.reload();        
             
-            // Aktualisiere die Liste der Veranstaltungen nach dem Löschen
-            //const response = await axios.get('/api/veranstaltungen');
-          /* this.$emit('veranstaltungDeleted', response.data); // Event auslösen, um die Liste in der Elternkomponente zu aktualisieren*/
           } catch (error) {
             console.error("Fehler beim Löschen der Veranstaltung", error);
           }

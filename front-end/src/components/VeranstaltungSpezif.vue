@@ -1,6 +1,7 @@
 <template>
     <div class="container">
        <div class="box">
+         <!-- Anzeige der Detailseite der Veranstaltung -->
          <div>
              <h3>Name: {{ Name }}</h3>
              <h4>Datum: {{ formatDatum(Datum)}}</h4>
@@ -8,19 +9,19 @@
              <h4>Preis: {{ Preis }}</h4>
              <h4>Beschreibung: {{ Beschreibung }}</h4>
              <h4>Genehmigung: {{ Genehmigung }}</h4>
+             <h4>Highlights: {{  highlights }}</h4>
              
              <router-link :to="`/bearbeiten/${veranstaltungId}`">
               <button>Veranstaltung bearbeiten</button>
             </router-link>
         
          <p>Veranstaltung ID: {{ veranstaltungId }}</p>
+
          </div>
        </div>
    
      </div>
-       </template>
-       
-       
+       </template> 
        <script>
    
        import axios from 'axios';
@@ -35,12 +36,15 @@
              Beschreibung:String,
              Genehmigung:Boolean,
              veranstaltungId:String,
+             Highlights: Array,
            },
            data() {
                return{
                  AlleVeranstaltungen: [],
                }
            },
+           
+           //Alle genehmigten Veranstaltungen werden vom Backend geladen
            async created() {
             const response = await axios.get('/api/veranstaltungen');
             const AlleVeranstaltungen = response.data;
@@ -65,6 +69,9 @@
 
         return 'Ungültiges Datum';
       },
+      mounted() {
+    console.log("Empfangene Highlights:", this.Highlights);
+  }
           }
    };
    </script>

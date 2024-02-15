@@ -14,6 +14,8 @@
         :Beschreibung="selectedVeranstaltung.beschreibung"
         :Genehmigung="selectedVeranstaltung.genehmigung"
         :veranstaltungId="selectedVeranstaltung.id"
+        :Highlights="selectedVeranstaltung.highlights"
+
         
       />
     </div>
@@ -26,6 +28,8 @@
       Veranstaltung genehmigen
     </button>
    <p></p>
+
+    <!-- Button zum Teilen der Veranstaltung -->
    <button class="custom-button" @click="copyLinkToClipboard">Link teilen</button>
 
      <!-- Formular für das Hinzufügen von Highlights -->
@@ -36,16 +40,7 @@
       <button @click="addHighlight" class="highlight-form button">Hinzufügen</button>
     </div>
 
-    <!-- Anzeige der Highlights -->
-    <ul class="highlight-list" v-if="selectedVeranstaltung.highlights">
-      <h3>Highlights</h3>
-      <li v-for="highlight in selectedVeranstaltung.highlights" :key="highlight.id">
-        <h4>{{ highlight.title }}</h4>
-        <p>{{ highlight.description }}</p>
-      </li>
-    </ul>
-    
-    
+
   </template>
   <script>
   import VeranstaltungSpezif from '../components/VeranstaltungSpezif.vue'
@@ -63,7 +58,8 @@
         Id: this.$route.params.Id,
         newHighlight: {
         title: '',
-        description: ''
+        description: '',
+        veranstaltungId: this.$route.params.Id,
       },
       };
     },
@@ -94,6 +90,8 @@ methods: {
         console.error('Fehler beim Genehmigen der Veranstaltung:', error);
       }
     },
+    
+    //Speichern des Links in die Zwischenablage
     copyLinkToClipboard() {
       const url = window.location.href;
       navigator.clipboard.writeText(url).then(() => {
@@ -103,9 +101,31 @@ methods: {
       });
     },
     addHighlight() {
-      // Logik zum Hinzufügen des Highlights zur Veranstaltung
-      // ...
-    },
+      if (!this.newHighlight.title || !this.newHighlight.description) {
+        alert("Bitte füllen Sie alle Felder aus.");
+        return;
+      }
+
+      // Senden Sie die Anfrage an das Backend
+      axios.post(`/api/veranstaltungen/${this.newHighlight.veranstaltungId}/highlights`, {
+    highlights: [
+      {
+        überschrift: this.newHighlight.title,
+        beschreibung: this.newHighlight.description
+      }
+    ]
+      })
+      .then(response => {
+        console.log("Highlight hinzugefügt", response);
+        // Hier können Sie weitere Aktionen durchführen, z.B. das Formular zurücksetzen
+        this.newHighlight.title = '';
+        this.newHighlight.description = '';
+      })
+      .catch(error => {
+        console.error("Fehler beim Hinzufügen des Highlights", error);
+        // Fehlerbehandlung
+      });
+    } 
   }
   };
   </script>

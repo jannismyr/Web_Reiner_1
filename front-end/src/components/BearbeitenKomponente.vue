@@ -1,4 +1,6 @@
 <template>
+  
+    <!-- Eingabefelder zum Bearbeiten einer Veranstaltung -->
     <div>
       <h1>Veranstaltung Bearbeiten</h1>
       <form @submit.prevent="updateVeranstaltung" id="eventForm">
@@ -49,6 +51,8 @@ export default {
   created() {
     this.ladeVeranstaltung();
   },
+
+  //Daten einer bestimmten Veranstaltung werden anhand der ID aus dem Backend geladen
   methods: {
     async ladeVeranstaltung() {
     try {
@@ -67,6 +71,7 @@ export default {
     }
   },
   
+  //Datum wird ins korrekte Format umgeformt
   formatDate(dateString) {
     const date = new Date(dateString);
     let formattedDate = date.getFullYear() + '-' + 

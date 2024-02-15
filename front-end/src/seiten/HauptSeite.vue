@@ -7,6 +7,7 @@
   </router-link>
   <button class="custom-button" @click="generateTestData">Testdaten generieren</button>
 
+  <!-- Suchfeld -->
     <div>
      <form class="search-form" @submit.prevent="search" >
        <input type="text" class="search-input" v-model="searchTerm" placeholder="Suche..." @keyup="search">
@@ -35,7 +36,7 @@
 
 <script>
 import VeranstaltungAllg from '../components/VeranstaltungAllg.vue'
-// (import { generateTestData } from '...../back-end/src/testdatengenerator.js';
+
 import axios from 'axios';
 
 export default {
@@ -52,6 +53,7 @@ export default {
       error: null,
     }
   },
+  // Methode für die Suche
   methods: {
     async search() {
       try {
@@ -80,6 +82,7 @@ export default {
         this.isLoading = false;
       },
 
+      // alle genehmigten Veranstaltungen werden vom Backend geladen
     async fetchAlleVeranstaltungen() {
       this.isLoading = true;
       this.error = null;
@@ -95,6 +98,7 @@ export default {
       }
     },
 
+    //Testdaten generieren
     async generateTestData() {
   try {
     // Senden einer HTTP-Anfrage an den Express-Server

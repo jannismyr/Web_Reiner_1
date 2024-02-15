@@ -1,8 +1,9 @@
 <template>
     <div>
 
+  <!-- Zeigt die Komponente nur an, wenn `selectedVeranstaltung` existiert -->
       <BearbeitenKomponente
-        v-if="selectedVeranstaltung"
+        v-if="selectedVeranstaltung" 
         :selectedVeranstaltung="selectedVeranstaltung"
         @updateVeranstaltung="handleUpdate"
       />
@@ -26,10 +27,12 @@ export default {
     };
   },
   async created() {
+    // Lädt alle Veranstaltungen aus dem Backend
     try {
       const response = await axios.get('/api/veranstaltungen');
       this.AlleVeranstaltungen = response.data;
 
+      //Wählt die Veranstaltung anhand der ID aus
       const selectedId = this.Id;
       this.selectedVeranstaltung = this.AlleVeranstaltungen.find(
         (veranstaltung) => veranstaltung.id === selectedId
@@ -39,6 +42,8 @@ export default {
     }
   },
   methods: {
+    
+    //Veranstaltung mit neuen Daten aktualisieren
     async handleUpdate(updatedVeranstaltung) {
       try {
         await axios.put(`/api/veranstaltungen/${this.selectedVeranstaltung.id}`, updatedVeranstaltung);

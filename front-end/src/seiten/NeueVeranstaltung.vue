@@ -1,7 +1,7 @@
 <template>
   <h1>Anlegen einer neuen Veranstaltung</h1>
 
-  
+   <!-- Eingabefelder zum Erstellen einer Veranstaltung -->
       <form @submit.prevent="validateForm" id="eventForm">
   <label for="eventName">Veranstaltungsname:</label>
   <input type="text" id="eventName" name="eventName" v-model="this.Veranstaltung.Name"  ><br><br>
@@ -41,6 +41,7 @@ data () {
 components: {
 },
 
+//Richtigkeit der Eingabe überprüfen
 methods: {
   validateForm() {
     const eventName = this.Veranstaltung.Name;
@@ -86,6 +87,7 @@ methods: {
             genehmigung: false,
            };
 
+         //senden der Daten der neuen Veranstaltung an dad Backend
           axios.post('/api/veranstaltungen', formData)
             .then(response => {
               console.log('Antwort der API:', response.data);

@@ -35,6 +35,8 @@
         Id: this.$route.params.Id,
       };
     },
+
+    //Laden der nicht genehmigten Veranstaltungen vom Backend
     async created() {
         const response = await axios.get('/api/veranstaltungen/nicht-genehmigt');
          const AlleVeranstaltungen = response.data;
