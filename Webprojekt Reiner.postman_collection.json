@@ -1,0 +1,432 @@
+{
+	"info": {
+		"_postman_id": "0cf3db4c-868c-4ca2-b693-cbb8d8be6847",
+		"name": "Webprojekt Reiner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30285521"
+	},
+	"item": [
+		{
+			"name": "Liste aller Veranstaltungen (neuste zuerst)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Liste aller nicht genehmigten Veranstaltungen (neuste zuerst)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/nicht-genehmigt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						"nicht-genehmigt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Liste aller genehmigten Veranstaltungen (neuste zuerst)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/genehmigt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						"genehmigt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aufrufen einer bestimmten Veranstaltung (nach ID)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Veranstaltung erstellen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"\",\r\n    \"datum\": \"09.09.1999\",\r\n    \"ort\": \"\",\r\n    \"preis\": \"0,00\",\r\n    \"beschreibung\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						""
+					]
+				},
+				"description": "Unter \"Body\" die gewünschten Daten eintragen"
+			},
+			"response": []
+		},
+		{
+			"name": "Veranstaltung bearbeiten",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"123\",\r\n    \"datum\": \"09.09.1999\",\r\n    \"ort\": \"\",\r\n    \"preis\": \"0,00\",\r\n    \"beschreibung\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "7"
+						}
+					]
+				},
+				"description": "VeranstaltungsID als Variable eintragen, unter \"Body\" die gewünschten Änderungen druchführen"
+			},
+			"response": []
+		},
+		{
+			"name": "Suche",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/suche?stichwort=haus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"suche"
+					],
+					"query": [
+						{
+							"key": "stichwort",
+							"value": "haus"
+						}
+					]
+				},
+				"description": "Als Variable stichwort = *gesuchter Begriff*"
+			},
+			"response": []
+		},
+		{
+			"name": "Suche mit Statusabfrage",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/suche/:status?stichwort=haus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"suche",
+						":status"
+					],
+					"query": [
+						{
+							"key": "stichwort",
+							"value": "haus"
+						}
+					],
+					"variable": [
+						{
+							"key": "status",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Veranstaltung genehmigen",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/genehmigen/:veranstaltungId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						"genehmigen",
+						":veranstaltungId"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "3"
+						}
+					]
+				},
+				"description": "veranstaltungsId = \\*gewünschte veranstaltung\\*  \nGenehmigung wird in audit.txt dokumentiert."
+			},
+			"response": []
+		},
+		{
+			"name": "Veranstaltung löschen",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "6"
+						}
+					]
+				},
+				"description": "Veranstaltungsid = *gewünschte Veranstaltung*"
+			},
+			"response": []
+		},
+		{
+			"name": "Highlights hinzufügen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"highlights\": [\r\n    {\r\n      \"überschrift\": \"Highlight 1\",\r\n      \"beschreibung\": \"Es passieren Dinge 1\"\r\n    },\r\n    {\r\n      \"überschrift\": \"Highlight 2\",\r\n      \"beschreibung\": \"Es passieren Dinge 2\"\r\n    }\r\n  ]\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId/highlights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId",
+						"highlights"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "veranstaltungsId = \\*gewünschte Veranstaltung\\*  \nHighlights im Body entsprechend anpassen oder hinzufügen"
+			},
+			"response": []
+		},
+		{
+			"name": "Highlights einer bestimmten Veranstaltung abrufen",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"highlights\": [\r\n    {\r\n      \"überschrift\": \"Highlight 1\",\r\n      \"beschreibung\": \"Es passieren Dinge 1\"\r\n    },\r\n    {\r\n      \"überschrift\": \"Highlight 2\",\r\n      \"beschreibung\": \"Es passieren Dinge 2\"\r\n    }\r\n  ]\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId/highlights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId",
+						"highlights"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Highlights einer bestimmten Veranstaltung bearbeiten",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"highlights\": [\r\n    {\r\n      \"überschrift\": \"Highlight 1\",\r\n      \"beschreibung\": \"Es passieren keine Dinge 1\"\r\n    },\r\n    {\r\n      \"überschrift\": \"Highlight 2\",\r\n      \"beschreibung\": \"Es passieren Dinge 2\"\r\n    }\r\n  ]\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId/highlights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId",
+						"highlights"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

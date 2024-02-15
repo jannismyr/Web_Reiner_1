@@ -2,6 +2,7 @@ import express from 'express';
 import {AlleVeranstaltungen as AlleVeranstaltungenRaw} from './temp-data.js';
 import NeueVeranstaltungsId from './IDGenerator.js';
 import testdatengenerator from './testdatengenerator.js';
+import fs from 'fs'
 
 let AlleVeranstaltungen = AlleVeranstaltungenRaw;
 
@@ -230,6 +231,8 @@ app.delete('/api/veranstaltungen/:veranstaltungId', (req, res) => {
     res.json(AlleVeranstaltungen)
 })
 
+
+
 //Aufgabe 3
 //Format der Anfrage:
 //{
@@ -292,6 +295,28 @@ app.get('/api/veranstaltungen/:veranstaltungId/highlights', (req, res) => {
 
     res.status(200).json(highlights);
 });
+
+// Highlights bearbeiten
+app.put('/api/veranstaltungen/:veranstaltungId/highlights', (req, res) => {
+    const veranstaltungId = req.params.veranstaltungId;
+    const veranstaltung = AlleVeranstaltungen.find((v) => v.id === veranstaltungId);
+  
+    if (!veranstaltung) {
+      return res.status(404).json({ error: 'Veranstaltung nicht gefunden' });
+    }
+  
+    const neueHighlights = req.body.highlights;
+  
+    if (!neueHighlights || !Array.isArray(neueHighlights)) {
+      return res.status(400).json({ error: 'Highlights erforderlich und müssen ein Array sein' });
+    }
+  
+    veranstaltung.highlights = neueHighlights;
+    veranstaltung.highlightmenge = neueHighlights.length;
+  
+    res.status(200).json(veranstaltung.highlights);
+});
+
 
 // Port anzeige in Konsole
 app.listen(8000, ()=> {
