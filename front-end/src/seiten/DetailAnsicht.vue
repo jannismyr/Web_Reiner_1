@@ -14,7 +14,7 @@
         :Beschreibung="selectedVeranstaltung.beschreibung"
         :Genehmigung="selectedVeranstaltung.genehmigung"
         :veranstaltungId="selectedVeranstaltung.id"
-        :Highlights="selectedVeranstaltung.highlights"
+        :highlights="selectedVeranstaltung.highlights"
 
         
       />
@@ -90,6 +90,21 @@ methods: {
         console.error('Fehler beim Genehmigen der Veranstaltung:', error);
       }
     },
+
+    async mounted() {
+    const veranstaltungId = this.$route.params.Id;  // Holt die ID aus den Route-Parametern
+    try {
+      // Lädt die Veranstaltungsdetails
+      const response = await axios.get(`/api/veranstaltungen/${veranstaltungId}`);
+      this.selectedVeranstaltung = response.data;
+
+      // Lädt die Highlights für die Veranstaltung
+      const highlightsResponse = await axios.get(`/api/veranstaltungen/${veranstaltungId}/highlights`);
+      this.highlights = highlightsResponse.data;  // Speichert die Highlights in der Datenvariable
+    } catch (error) {
+      console.error('Fehler beim Abrufen der Veranstaltungsdetails und Highlights:', error);
+    }
+  },
     
     //Speichern des Links in die Zwischenablage
     copyLinkToClipboard() {
@@ -100,31 +115,30 @@ methods: {
         console.error('Fehler beim Kopieren des Links:', err);
       });
     },
-    addHighlight() {
-      if (!this.newHighlight.title || !this.newHighlight.description) {
-        alert("Bitte füllen Sie alle Felder aus.");
-        return;
-      }
 
-      // Senden Sie die Anfrage an das Backend
-      axios.post(`/api/veranstaltungen/${this.newHighlight.veranstaltungId}/highlights`, {
+    addHighlight() {
+  if (!this.newHighlight.title || !this.newHighlight.description) {
+    alert("Bitte füllen Sie alle Felder aus.");
+    return;
+  }
+
+  // Korrektur der Feldnamen gemäß Backend-Erwartungen
+  axios.post(`/api/veranstaltungen/${this.newHighlight.veranstaltungId}/highlights`, {
     highlights: [
       {
-        überschrift: this.newHighlight.title,
-        beschreibung: this.newHighlight.description
+        überschrift: this.newHighlight.title,  // Geändert von 'title' zu 'überschrift'
+        beschreibung: this.newHighlight.description  // Geändert von 'description' zu 'beschreibung'
       }
     ]
-      })
-      .then(response => {
-        console.log("Highlight hinzugefügt", response);
-        // Hier können Sie weitere Aktionen durchführen, z.B. das Formular zurücksetzen
-        this.newHighlight.title = '';
-        this.newHighlight.description = '';
-      })
-      .catch(error => {
-        console.error("Fehler beim Hinzufügen des Highlights", error);
-        // Fehlerbehandlung
-      });
+  })
+  .then(response => {
+    console.log("Highlight hinzugefügt", response);
+    this.newHighlight.title = '';
+    this.newHighlight.description = '';
+  })
+  .catch(error => {
+    console.error("Fehler beim Hinzufügen des Highlights", error);
+  });
     } 
   }
   };

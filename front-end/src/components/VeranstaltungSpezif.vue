@@ -9,7 +9,19 @@
              <h4>Preis: {{ Preis }}</h4>
              <h4>Beschreibung: {{ Beschreibung }}</h4>
              <h4>Genehmigung: {{ Genehmigung }}</h4>
-             <h4>Highlights: {{  highlights }}</h4>
+
+               <!-- HIGHLIGHTS-->
+               <div v-if="highlights && highlights.length">
+              <h4>Highlights:</h4>
+              <ul class="highlights-list">
+                <li v-for="(highlight, index) in highlights" :key="index" class="highlight-item">
+                  <strong>{{ highlight.überschrift }}</strong>: {{ highlight.beschreibung }}
+                </li>
+              </ul>
+            </div>
+            <div v-else>
+              <h4>Highlights: Keine</h4>
+            </div>
              
              <router-link :to="`/bearbeiten/${veranstaltungId}`">
               <button>Veranstaltung bearbeiten</button>
@@ -18,6 +30,7 @@
          <p>Veranstaltung ID: {{ veranstaltungId }}</p>
 
          </div>
+         
        </div>
    
      </div>
@@ -36,7 +49,7 @@
              Beschreibung:String,
              Genehmigung:Boolean,
              veranstaltungId:String,
-             Highlights: Array,
+             highlights: Array,
            },
            data() {
                return{

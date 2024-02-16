@@ -5,13 +5,14 @@
             <li><a href="#">Startseite</a></li>
         </router-link>
 
-        <li><a href="#">Genehmigt</a></li>
+        <router-link to="/neueVeranstaltung">
+            <li><a href="#">Neue Veranstaltung</a></li>
+        </router-link>
 
         <router-link to="/nicht-genehmigt">
             <li><a href="#">Nicht-genehmigt</a></li>
         </router-link>
        
-        <li><a href="#">Admin</a></li>
     </ul>
 </nav>
 </template>

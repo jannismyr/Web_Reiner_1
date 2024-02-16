@@ -260,3 +260,20 @@ input[type="number"] {
 .highlight-list h4 {
   margin-top: 0;
 }
+
+.highlights-list {
+  list-style-type: none; /* Entfernt die Listensymbole */
+  padding: 0;
+}
+
+.highlight-item {
+  background-color: #f4f4f4; /* Hintergrundfarbe für jedes Highlight */
+  margin-bottom: 10px; /* Abstand zwischen den Listenelementen */
+  padding: 10px; /* Innenabstand */
+  border-radius: 5px; /* Abgerundete Ecken */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Schatten für jedes Highlight */
+}
+
+.highlight-item strong {
+  color: #333; /* Farbe für die Überschrift des Highlights */
+}
