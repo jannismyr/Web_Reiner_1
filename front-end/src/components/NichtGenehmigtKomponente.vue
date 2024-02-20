@@ -50,6 +50,7 @@
             const AlleVeranstaltungen = response.data;
             this.AlleVeranstaltungen = AlleVeranstaltungen;
            },
+           
            methods: {
             formatDatum(datumString) {
             // Überprüfung, ob das Datum im Format YYYY-MM-DD vorliegt

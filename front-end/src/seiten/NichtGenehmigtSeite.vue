@@ -17,6 +17,10 @@
       <br>
     </div>
     </div>
+
+      <!-- Button zum Teilen der Liste aller Nicht-genehmigten Veranstaltungen -->
+   <button class="custom-button" @click="copyLinkToClipboard">Liste teilen</button>
+
   </template>
   
   <script>
@@ -42,7 +46,17 @@
          const AlleVeranstaltungen = response.data;
          this.AlleVeranstaltungen = AlleVeranstaltungen;
         },
-    };
-  
-  </script>
-  
+
+
+  methods: {
+    copyLinkToClipboard() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        alert("Link wurde in die Zwischenablage kopiert!");
+      }).catch(err => {
+        console.error('Fehler beim Kopieren des Links:', err);
+      });
+    }
+  }
+}
+</script>

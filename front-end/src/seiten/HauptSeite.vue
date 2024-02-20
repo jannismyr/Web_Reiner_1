@@ -5,6 +5,8 @@
   <router-link to="/neueVeranstaltung">
     <button class="custom-button">Neue Veranstaltung</button>
   </router-link>
+
+  
   <button class="custom-button" @click="generateTestData">Testdaten generieren</button>
 
   <!-- Suchfeld -->
