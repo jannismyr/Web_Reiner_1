@@ -37,10 +37,18 @@ export default {
       this.selectedVeranstaltung = this.AlleVeranstaltungen.find(
         (veranstaltung) => veranstaltung.id === selectedId
       );
+
+      // Überprüft, ob eine Veranstaltung gefunden wurde
+      if (!this.selectedVeranstaltung) {
+        this.$router.push('/404'); // Umleitung auf die 404-Seite
+      }
+
     } catch (error) {
       console.error('Fehler beim Abrufen der Veranstaltungen:', error);
+      this.$router.push('/404'); // Umleitung auf die 404-Seite im Fehlerfall
     }
-  },
+   },
+
   methods: {
     
     //Veranstaltung mit neuen Daten aktualisieren

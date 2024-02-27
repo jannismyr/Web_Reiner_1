@@ -7,6 +7,7 @@
   import DetailAnsicht from './seiten/DetailAnsicht.vue';
   import NichtGenehmigtSeite from './seiten/NichtGenehmigtSeite.vue';
   import BearbeitenSeite from './seiten/BearbeitenSeite.vue';
+  import ErrorPage404 from './seiten/ErrorPage404.vue';
 
 
   createApp(App)
@@ -29,8 +30,14 @@
         component: BearbeitenSeite,
       }, {
         path: '/',
-        redirect: '/hauptseite', // Hier auf die gewünschte Unterseite verweisen
-      },
+        redirect: '/hauptseite',
+      }, {
+        path: '/404',
+        component: ErrorPage404,    
+        }, {
+          path: '/:catchAll(.*)',
+          redirect: '/404'
+        },
     
     ]
   }))

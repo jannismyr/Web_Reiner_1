@@ -63,10 +63,19 @@ export default {
     try {
       const selectedId = this.$route.params.Id;
       const response = await axios.get('/api/veranstaltungen/' + selectedId);
+     if (response.data && response.status === 200) {
       this.selectedVeranstaltung = response.data;
-    } catch (error) {
-      console.error('Fehler beim Abrufen der spezifischen Veranstaltung:', error);
+    } else {
+      // Umleiten auf eine 404-Seite, wenn die Veranstaltung nicht gefunden wird
+      this.$router.push('/404');
     }
+  } catch (error) {
+    console.error('Fehler beim Abrufen der spezifischen Veranstaltung:', error);
+    // Umleiten auf eine 404-Seite im Fehlerfall
+    this.$router.push('/404');
+  } 
+
+
   },
   async mounted() {
     try {
@@ -76,6 +85,15 @@ export default {
 
       const highlightsResponse = await axios.get(`/api/veranstaltungen/${veranstaltungId}/highlights`);
       this.selectedVeranstaltung.highlights = highlightsResponse.data;
+
+   /*   // Wiederholen Sie die gleiche Überprüfung hier
+    if (response.data && response.status === 200) {
+      this.selectedVeranstaltung = response.data;
+    } else {
+      // Umleiten auf eine 404-Seite, wenn die Veranstaltung nicht gefunden wird
+      this.$router.push('/404');
+    }*/
+
     } catch (error) {
       console.error('Fehler beim Abrufen der Veranstaltungsdetails und Highlights:', error);
     }
