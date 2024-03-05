@@ -8,7 +8,7 @@ router.post('/api/import/veranstaltung', (req, res) => {
   try {
     const importData = req.body;
 
-    // alle Daten da?
+    // Sehen die Daten gut aus?
     if (!importData || !importData.entry || !importData.entry.title || !importData.entry.date) {
       return res.status(400).json({ error: 'Ungültiges Importdatenformat' });
     }
