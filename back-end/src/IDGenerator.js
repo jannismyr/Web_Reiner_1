@@ -6,4 +6,4 @@ const NeueVeranstaltungsId = (veranstaltungen) => {
  module.exports = NeueVeranstaltungsId;
  
 
- // nimmt den Höchsten ID-Wert von veranstaltungen und macht id + 1
+ // nimmt den Höchsten ID-Wert von veranstaltungen und macht ID + 1

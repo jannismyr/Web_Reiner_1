@@ -1,14 +1,17 @@
 import express from 'express';
+import fs from 'fs';
 import {AlleVeranstaltungen as AlleVeranstaltungenRaw} from './temp-data.js';
 import NeueVeranstaltungsId from './IDGenerator.js';
 import testdatengenerator from './testdatengenerator.js';
-import fs from 'fs'
+import externeveranstaltung from './externeveranstaltung.js';
+
 
 let AlleVeranstaltungen = AlleVeranstaltungenRaw;
 
 const app = express ();
 app.use(express.json());
 app.use(testdatengenerator);
+app.use (externeveranstaltung);
 
 
 // Test, "historischer Codeschnipsel"
@@ -91,7 +94,6 @@ app.post('/api/veranstaltungen', (req, res) => {                                
 
         res.status(201).json(Veranstaltungsausgabe);
     } catch (error) {
-        // Fehler beim Parsen des JSON-Objekts
         console.error('Fehler beim Parsen des JSON-Objekts:', error);
         res.status(400).json({ error: 'Ungültiges JSON-Format' });
     }
