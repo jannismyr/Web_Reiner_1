@@ -34,13 +34,19 @@ li a:hover {
     background-color: #111;
 }
   
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  max-width: 800px; /* Ändere die maximale Breite des Containers nach Bedarf */
-  margin: 0 auto; /* Zentriere den Container auf der Seite */
-}
+  .container {
+    /*display: grid;
+    grid-template-columns:  repeat(3, 1fr);*/
+    gap: 10px;
+    max-width: 800px; 
+    margin: 0 auto;
+    margin-bottom: 1rem;
+  }
+
+  .Veranstaltungsliste{
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+  }
 
 .box {
   background-color: #f0f0f0;
@@ -49,6 +55,8 @@ li a:hover {
   text-align: center;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
+  border-radius: 10px; /* Abgerundete Ecken */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sanfter Schatten für Tiefe */
 }
   
 

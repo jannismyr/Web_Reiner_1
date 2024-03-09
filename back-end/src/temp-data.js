@@ -64,4 +64,37 @@ export const AlleVeranstaltungen = [{
     Zeitstempel: "2023-12-09T12:36:56.908Z",
     highlights:[],      //Aufgabe 3
     highlightmenge: 0,      //Aufgabe 3
+}, {
+    id: '7',
+    name: 'Hey das geht ab',
+    datum: '13.02.2023',
+    ort: 'Heidenheim',
+    preis: '89,00',
+    beschreibung: 'TEST TEST test test',
+    genehmigung: true,
+    Zeitstempel: "2023-12-10T12:36:56.908Z",
+    highlights:[],      //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
+}, {
+    id: '8',
+    name: 'Bowling Abend',
+    datum: '07.11.2003',
+    ort: 'Wiesbaden',
+    preis: '69,00',
+    beschreibung: 'TEST TEST test test',
+    genehmigung: true,
+    Zeitstempel: "2023-12-10T12:36:56.908Z",
+    highlights:[],      //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
+}, {
+    id: '9',
+    name: 'Billard',
+    datum: '24.04.2024',
+    ort: 'Aalen',
+    preis: '55,00',
+    beschreibung: 'TEST TEST test test',
+    genehmigung: true,
+    Zeitstempel: "2023-12-11T12:36:56.908Z",
+    highlights:[],      //Aufgabe 3
+    highlightmenge: 0,      //Aufgabe 3
 }];

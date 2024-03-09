@@ -19,7 +19,7 @@
 </div>
   
 
-    <div>
+    <div class="Veranstaltungsliste">
       <VeranstaltungAllg v-for="Veranstaltung in AlleVeranstaltungen"
         :key="Veranstaltung.id"
         :Name="Veranstaltung.name"
