@@ -25,7 +25,7 @@
           <textarea id="eventDescription" rows="4" cols="50" v-model="veranstaltung.beschreibung"></textarea>
         </div>
         <div>
-          <button type="submit">Änderungen Speichern</button>
+          <button class="save-button" type="submit">Änderungen Speichern</button>
         </div>
       </form>
     </div>

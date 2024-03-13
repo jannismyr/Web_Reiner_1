@@ -24,7 +24,7 @@
             </div>
              
              <router-link :to="`/bearbeiten/${veranstaltungId}`">
-              <button>Veranstaltung bearbeiten</button>
+              <button class="detail-button">Veranstaltung bearbeiten</button>
             </router-link>
         
          <p>Veranstaltung ID: {{ veranstaltungId }}</p>

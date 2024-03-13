@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>DetailSeite zu einer Veranstaltung</h1>
-    <h2>ID QUICK-CHECK: {{ $route.params.Id }}</h2>
 
     <VeranstaltungSpezif
       v-if="selectedVeranstaltung"

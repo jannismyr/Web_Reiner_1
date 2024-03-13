@@ -2,7 +2,7 @@
     <div>
       <h1>NICHT GENEHMIGT</h1>
 
-      <div>
+      <div class="Veranstaltungsliste">
       <NichtGenehmigtKomponente v-for="Veranstaltung in AlleVeranstaltungen"
         :key="Veranstaltung.id"
         :Name="Veranstaltung.name"
