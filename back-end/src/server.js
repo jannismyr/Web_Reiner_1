@@ -122,6 +122,13 @@ app.put('/api/veranstaltungen/:veranstaltungId', (req, res) => {
 
         const Bearbeitungszeitpunkt = new Date();                           // Zeitstempel für Bearbeitungszeitpunkt
 
+        const Mussfeld = ['name', 'datum', 'ort', 'preis', 'beschreibung'];
+        const Fehlfeld = Mussfeld.filter(field => !(field in req.body) || req.body[field].trim() === '');
+    
+        if (Fehlfeld.length > 0) {
+            return res.status(400).json({ error: `Fehlende oder leere Felder: ${Fehlfeld.join(', ')}` });
+        }
+
         const bearbeiteteVeranstaltung = {
             id: veranstaltungId,
             Zeitstempel: Bearbeitungszeitpunkt.toISOString(),
