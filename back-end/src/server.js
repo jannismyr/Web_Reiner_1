@@ -74,8 +74,15 @@ app.get('/api/veranstaltungen/:veranstaltungId', (req, res) => {
 app.post('/api/veranstaltungen', (req, res) => {                                            //Übergabeformat:
     try {  
     const timestamp = new Date();                                                           // Erstellen des Timestamps                
+     
+    const Mussfeld = ['name', 'datum', 'ort', 'preis', 'beschreibung'];
+    const Fehlfeld = Mussfeld.filter(field => !(field in req.body) || req.body[field].trim() === '');
+
+    if (Fehlfeld.length > 0) {
+        return res.status(400).json({ error: `Fehlende oder leere Felder: ${Fehlfeld.join(', ')}` });
+    }
                                                                                             // JSON:
-        const neueVeranstaltung = {                                                         // {
+    const neueVeranstaltung = {                                                             // {
             id: NeueVeranstaltungsId(AlleVeranstaltungen).toString(),                       //
             name: req.body.name,                                                            // "name": "ein Name",
             datum: req.body.datum,                                                          // "datum": "TT.MM.JJJJ",

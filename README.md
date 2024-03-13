@@ -18,3 +18,12 @@ Abhängigkeiten
 Back End:
  @babel/runtime:  Version 7.23.4
  express: Version 4.18.2
+
+ ## Instalation
+
+ Back End:
+
+ 1) cd ./back-end
+ 2) npm install
+ 3) npm run dev
+ --> Backend sollte auf port 8000 starten, positive Rückmeldung über Konsole
