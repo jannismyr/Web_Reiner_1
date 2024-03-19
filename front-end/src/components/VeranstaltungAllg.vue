@@ -1,7 +1,7 @@
 <template>
  <div class="container">
     <div class="box">
-       <!-- Anzeige der Detailseite der Veranstaltung -->
+       <!-- Anzeige der Details der Veranstaltung -->
       <div>
           <h3>Name: {{ Name }}</h3>
           <h4>Datum: {{ formatDatum(Datum) }}</h4>

@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import VeranstaltungAllg from '../components/VeranstaltungAllg.vue'
+  import VeranstaltungAllg from '../components/VeranstaltungAllg.vue'
 
 import axios from 'axios';
 

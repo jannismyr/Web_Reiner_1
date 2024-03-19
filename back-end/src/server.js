@@ -75,7 +75,7 @@ app.post('/api/veranstaltungen', (req, res) => {                                
     try {  
     const timestamp = new Date();                                                           // Erstellen des Timestamps                
      
-    const Mussfeld = ['name', 'datum', 'ort', 'preis', 'beschreibung'];
+    const Mussfeld = ['name', 'datum', 'ort', 'beschreibung'];
     const Fehlfeld = Mussfeld.filter(field => !(field in req.body) || req.body[field].trim() === '');
 
     if (Fehlfeld.length > 0) {

@@ -87,7 +87,7 @@ methods: {
             genehmigung: false,
            };
 
-         //senden der Daten der neuen Veranstaltung an dad Backend
+         //senden der Daten der neuen Veranstaltung an das Backend
           axios.post('/api/veranstaltungen', formData)
             .then(response => {
               console.log('Antwort der API:', response.data);
