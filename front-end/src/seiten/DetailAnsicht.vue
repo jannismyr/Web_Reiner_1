@@ -27,6 +27,7 @@
     <!-- Button zum Teilen der Veranstaltung -->
     <button class="custom-button" @click="copyLinkToClipboard">Link teilen</button>
 
+    <!-- Aufgabe 3 -->
     <!-- Formular für das Hinzufügen von Highlights -->
     <div class="highlight-form">
       <h3>Highlight hinzufügen</h3>
@@ -115,6 +116,7 @@ export default {
       });
      },
 
+    //Aufgabe3
     //Hinzufügen eines Highlights
     addHighlight() {
       if (!this.newHighlight.title || !this.newHighlight.description) {

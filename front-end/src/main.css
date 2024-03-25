@@ -35,17 +35,18 @@ li a:hover {
 }
   
   .container {
-    /*display: grid;
-    grid-template-columns:  repeat(3, 1fr);*/
     gap: 10px;
     max-width: 800px; 
     margin: 0 auto;
     margin-bottom: 1rem;
   }
 
+  /* Aufgabe2-Grid */
   .Veranstaltungsliste{
     display: grid;
     grid-template-columns:  1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
   }
 
 .box {
@@ -55,8 +56,8 @@ li a:hover {
   text-align: center;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
-  border-radius: 10px; /* Abgerundete Ecken */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sanfter Schatten für Tiefe */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
   
 
@@ -104,6 +105,7 @@ li a:hover {
     align-items: center;
     max-width: 400px;
     align-items: baseline;
+    padding: 10px;
   }
   
   .search-input {

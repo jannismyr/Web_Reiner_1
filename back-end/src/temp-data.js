@@ -22,7 +22,7 @@ export const AlleVeranstaltungen = [{
     highlightmenge: 0,      //Aufgabe 3
 }, {
     id: '3',
-    name: 'Reinorgeln',
+    name: '2000er Hits',
     datum: '02.02.2022',
     ort: 'Simons Haus',
     preis: '0,00',

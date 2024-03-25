@@ -103,21 +103,21 @@ export default {
 
     //Testdaten generieren
     async generateTestData() {
-  try {
-    // Senden einer HTTP-Anfrage an den Express-Server
-    const response = await axios.get('/api/testdatengenerator');
-    console.log("Testdaten erfolgreich generiert: ", response.data);
+    try {
+      // Senden einer Anfrage ans Backend
+      const response = await axios.get('/api/testdatengenerator');
+      console.log("Testdaten erfolgreich generiert: ", response.data);
 
-    // Alert-Benachrichtigung hinzufügen
-    alert("Nicht-genehmigte Testveranstaltung wurde erfolgreich generiert!");
+      // Alert-Benachrichtigung hinzufügen
+      alert("Nicht-genehmigte Testveranstaltung wurde erfolgreich generiert!");
 
-    // Nach erfolgreichem Abrufen der Testdaten, aktualisieren Sie die Veranstaltungsliste
-    await this.fetchAlleVeranstaltungen();
-    } catch (error) {
-      console.error("Fehler beim Generieren der Testdaten: ", error);
-    }
-   }
-  },
+      // Nach erfolgreichem Abrufen der Testdaten, aktualisieren Sie die Veranstaltungsliste
+      await this.fetchAlleVeranstaltungen();
+      } catch (error) {
+        console.error("Fehler beim Generieren der Testdaten: ", error);
+      }
+     }
+    },
 
   created() {
     this.fetchAlleVeranstaltungen();

@@ -5,3 +5,6 @@ Veranstaltung 9 wurde genehmigt am 2024-02-16T12:16:32.583Z
 Veranstaltung 6 wurde genehmigt am 2024-02-20T11:56:37.816Z
 Veranstaltung 6 wurde genehmigt am 2024-02-27T08:54:26.926Z
 Veranstaltung 3 wurde genehmigt am 2024-02-27T09:00:08.448Z
+Veranstaltung 12 wurde genehmigt am 2024-03-25T10:46:17.923Z
+Veranstaltung 13 wurde genehmigt am 2024-03-25T11:21:13.651Z
+Veranstaltung 10 wurde genehmigt am 2024-03-25T11:21:18.719Z
