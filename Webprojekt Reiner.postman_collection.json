@@ -22,7 +22,8 @@
 						"api",
 						"veranstaltungen"
 					]
-				}
+				},
+				"description": "Eine Liste aller Veranstaltungen wird ausgegeben, genehmigt und nicht genehmigt."
 			},
 			"response": []
 		},
@@ -43,7 +44,8 @@
 						"veranstaltungen",
 						"nicht-genehmigt"
 					]
-				}
+				},
+				"description": "Eine Liste aller Nicht genehmigten Veranstaltungen wird ausgegeben."
 			},
 			"response": []
 		},
@@ -64,7 +66,8 @@
 						"veranstaltungen",
 						"genehmigt"
 					]
-				}
+				},
+				"description": "Eine Liste aller genehmigten Veranstaltungen wird ausgegeben."
 			},
 			"response": []
 		},
@@ -91,7 +94,8 @@
 							"value": "5"
 						}
 					]
-				}
+				},
+				"description": "Die Veranstaltung mit der ID \\*veranstaltungId\\* wird ausgegeben. Die Variable _veranstaltungId_ muss entstprechend gesetzt werden."
 			},
 			"response": []
 		},
@@ -137,7 +141,7 @@
 						}
 					]
 				},
-				"description": "status: \\*genehmigt\\* oder \\*nicht-genehmigt\\*"
+				"description": "Eine Stichwortsuche wird ausgeführt. Der Begriff kann frei gewählt werden.\n\nstatus: \\*genehmigt\\* oder \\*nicht-genehmigt\\*: Hier wird definiert, ob nach genehmigten oder nicht genehmigten Veranstaltungen gesucht wird."
 			},
 			"response": []
 		},
@@ -151,7 +155,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"\",\r\n    \"datum\": \"09.09.1999\",\r\n    \"ort\": \"\",\r\n    \"preis\": \"0,00\",\r\n    \"beschreibung\": \"\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -169,7 +173,8 @@
 						"api",
 						"testdatengenerator"
 					]
-				}
+				},
+				"description": "Eine Neue Veranstaltung wird erstellt. Sie dient zu Testzwecken und ist nicht genehmigt."
 			},
 			"response": []
 		},
@@ -183,7 +188,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"highlights\": [\r\n    {\r\n      \"überschrift\": \"Highlight 1\",\r\n      \"beschreibung\": \"Es passieren Dinge 1\"\r\n    },\r\n    {\r\n      \"überschrift\": \"Highlight 2\",\r\n      \"beschreibung\": \"Es passieren Dinge 2\"\r\n    }\r\n  ]\r\n}\r\n\r\n",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -209,7 +214,8 @@
 							"value": "2"
 						}
 					]
-				}
+				},
+				"description": "Ruft die Highlights der Veranstaltung mit der ID \\*veranstaltungId\\* ab. Wenn keine Highlights vorhanden sind wird ein leeres Array ausgegeben."
 			},
 			"response": []
 		},
@@ -240,7 +246,7 @@
 						""
 					]
 				},
-				"description": "Unter \"Body\" die gewünschten Daten eintragen"
+				"description": "Eine Neue Veranstaltung wird erstellt. Unter \"Body\" können die gewünschten Daten eingetragen werden."
 			},
 			"response": []
 		},
@@ -278,7 +284,7 @@
 						}
 					]
 				},
-				"description": "veranstaltungsId = \\*gewünschte Veranstaltung\\*  \nHighlights im Body entsprechend anpassen oder hinzufügen"
+				"description": "Ein oder mehrere Highlights können hinzugefügt werden.\n\nveranstaltungsId = \\*gewünschte Veranstaltung\\*  \nHighlights können im Body entsprechend angepasst oder hinzugefügt werden"
 			},
 			"response": []
 		},
@@ -308,7 +314,8 @@
 						"import",
 						"veranstaltung"
 					]
-				}
+				},
+				"description": "Veranstaltungen können im gegebenen Format importiert werden. Sie werden in das von der Schnittstelle verwendete Format umgewandelt."
 			},
 			"response": []
 		},
@@ -345,7 +352,7 @@
 						}
 					]
 				},
-				"description": "VeranstaltungsID als Variable eintragen, unter \"Body\" die gewünschten Änderungen druchführen"
+				"description": "VeranstaltungsID als Variable eintragen, unter \"Body\" die gewünschten Änderungen druchführen\n\nDer Preis darf leer sein, \"name\", \"datum\", \"ort\", \"beschreibung\" nicht."
 			},
 			"response": []
 		},
@@ -383,7 +390,7 @@
 						}
 					]
 				},
-				"description": "veranstaltungsId = \\*gewünschte veranstaltung\\*  \nGenehmigung wird in audit.txt dokumentiert."
+				"description": "Die Veranstaltung mit der ID \\*veranstaltungId\\* wird genehmigt. Der Zeitpunkt wird in einer Audit.txt gespeichert."
 			},
 			"response": []
 		},
@@ -420,7 +427,8 @@
 							"value": "2"
 						}
 					]
-				}
+				},
+				"description": "Die Highlightst der Veranstaltung mit der ID \\*veranstaltungId\\* können bearbeitet werden"
 			},
 			"response": []
 		},
@@ -448,7 +456,7 @@
 						}
 					]
 				},
-				"description": "Veranstaltungsid = *gewünschte Veranstaltung*"
+				"description": "Die Veranstaltung mit der ID \\*veranstaltungId\\* wird entgültig gelöscht."
 			},
 			"response": []
 		}
