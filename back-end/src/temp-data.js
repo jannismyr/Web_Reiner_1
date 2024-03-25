@@ -67,7 +67,7 @@ export const AlleVeranstaltungen = [{
 }, {
     id: '7',
     name: 'Hey das geht ab',
-    datum: '13.02.2023',
+    datum: '12.02.2023',
     ort: 'Heidenheim',
     preis: '89,00',
     beschreibung: 'TEST TEST test test',

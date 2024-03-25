@@ -40,7 +40,9 @@ export default {
     return {
       veranstaltung: {
         name: '',
-        datum: '',
+        datum: {
+          type: Date,
+          default: null},
         ort: '',
         preis: null,
         beschreibung: '',
@@ -73,12 +75,25 @@ export default {
   
   //Datum wird ins korrekte Format umgeformt
   formatDate(dateString) {
-    const date = new Date(dateString);
-    let formattedDate = date.getFullYear() + '-' + 
-                        ('0' + (date.getMonth() + 1)).slice(-2) + '-' + 
-                        ('0' + date.getDate()).slice(-2);
-    return formattedDate;
-  },
+  // Trennen des Datums in Teile (angenommen DD.MM.YYYY)
+  const parts = dateString.split('.');
+  
+  // Überprüfen, ob alle Teile existieren
+  if (parts.length === 3) {
+    const day = parts[0];
+    const month = parts[1];
+    const year = parts[2];
+
+    // Formatieren im YYYY-MM-DD Format
+    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  } else {
+    // Rückgabe eines Nullwerts oder eines Standarddatums, falls Parsing fehlschlägt
+    return null;
+  }
+},
+
+
+  
     async updateVeranstaltung() {
       try {
         // Entfernen von id und Zeitstempel aus den zu sendenden Daten
