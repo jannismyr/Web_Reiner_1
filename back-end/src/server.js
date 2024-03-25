@@ -75,7 +75,7 @@ app.post('/api/veranstaltungen', (req, res) => {                                
     try {  
     const timestamp = new Date();                                                           // Erstellen des Timestamps                
      
-    const Mussfeld = ['name', 'datum', 'ort', 'beschreibung'];
+    const Mussfeld = ['name', 'datum', 'ort', 'beschreibung'];                              //'name', 'datum', 'ort', 'beschreibung' dürfen nicht leer sein. Preis darf leer sein, da der Preis auch noch nicht festgelegt sein kann, wenn eine Veranstaltung erstellt wird.
     const Fehlfeld = Mussfeld.filter(field => !(field in req.body) || req.body[field].trim() === '');
 
     if (Fehlfeld.length > 0) {
@@ -122,7 +122,7 @@ app.put('/api/veranstaltungen/:veranstaltungId', (req, res) => {
 
         const Bearbeitungszeitpunkt = new Date();                           // Zeitstempel für Bearbeitungszeitpunkt
 
-        const Mussfeld = ['name', 'datum', 'ort', 'preis', 'beschreibung'];
+        const Mussfeld = ['name', 'datum', 'ort', 'beschreibung'];
         const Fehlfeld = Mussfeld.filter(field => !(field in req.body) || req.body[field].trim() === '');
     
         if (Fehlfeld.length > 0) {
