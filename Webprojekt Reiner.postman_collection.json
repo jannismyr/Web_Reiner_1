@@ -96,114 +96,7 @@
 			"response": []
 		},
 		{
-			"name": "Veranstaltung erstellen",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"\",\r\n    \"datum\": \"09.09.1999\",\r\n    \"ort\": \"\",\r\n    \"preis\": \"0,00\",\r\n    \"beschreibung\": \"\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/veranstaltungen/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"veranstaltungen",
-						""
-					]
-				},
-				"description": "Unter \"Body\" die gewünschten Daten eintragen"
-			},
-			"response": []
-		},
-		{
-			"name": "Veranstaltung bearbeiten",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"123\",\r\n    \"datum\": \"09.09.1999\",\r\n    \"ort\": \"\",\r\n    \"preis\": \"0,00\",\r\n    \"beschreibung\": \"\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"veranstaltungen",
-						":veranstaltungId"
-					],
-					"variable": [
-						{
-							"key": "veranstaltungId",
-							"value": "7"
-						}
-					]
-				},
-				"description": "VeranstaltungsID als Variable eintragen, unter \"Body\" die gewünschten Änderungen druchführen"
-			},
-			"response": []
-		},
-		{
 			"name": "Suche",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/suche?stichwort=haus",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"suche"
-					],
-					"query": [
-						{
-							"key": "stichwort",
-							"value": "haus"
-						}
-					]
-				},
-				"description": "Als Variable stichwort = *gesuchter Begriff*"
-			},
-			"response": []
-		},
-		{
-			"name": "Suche mit Statusabfrage",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -240,114 +133,43 @@
 					"variable": [
 						{
 							"key": "status",
-							"value": ""
+							"value": "genehmigt"
 						}
+					]
+				},
+				"description": "status: \\*genehmigt\\* oder \\*nicht-genehmigt\\*"
+			},
+			"response": []
+		},
+		{
+			"name": "Testveranstaltung erstellen",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"\",\r\n    \"datum\": \"09.09.1999\",\r\n    \"ort\": \"\",\r\n    \"preis\": \"0,00\",\r\n    \"beschreibung\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/testdatengenerator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"testdatengenerator"
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Veranstaltung genehmigen",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/veranstaltungen/genehmigen/:veranstaltungId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"veranstaltungen",
-						"genehmigen",
-						":veranstaltungId"
-					],
-					"variable": [
-						{
-							"key": "veranstaltungId",
-							"value": "3"
-						}
-					]
-				},
-				"description": "veranstaltungsId = \\*gewünschte veranstaltung\\*  \nGenehmigung wird in audit.txt dokumentiert."
-			},
-			"response": []
-		},
-		{
-			"name": "Veranstaltung löschen",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"veranstaltungen",
-						":veranstaltungId"
-					],
-					"variable": [
-						{
-							"key": "veranstaltungId",
-							"value": "6"
-						}
-					]
-				},
-				"description": "Veranstaltungsid = *gewünschte Veranstaltung*"
-			},
-			"response": []
-		},
-		{
-			"name": "Highlights hinzufügen",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"highlights\": [\r\n    {\r\n      \"überschrift\": \"Highlight 1\",\r\n      \"beschreibung\": \"Es passieren Dinge 1\"\r\n    },\r\n    {\r\n      \"überschrift\": \"Highlight 2\",\r\n      \"beschreibung\": \"Es passieren Dinge 2\"\r\n    }\r\n  ]\r\n}\r\n\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId/highlights",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"veranstaltungen",
-						":veranstaltungId",
-						"highlights"
-					],
-					"variable": [
-						{
-							"key": "veranstaltungId",
-							"value": "2"
-						}
-					]
-				},
-				"description": "veranstaltungsId = \\*gewünschte Veranstaltung\\*  \nHighlights im Body entsprechend anpassen oder hinzufügen"
 			},
 			"response": []
 		},
@@ -392,6 +214,180 @@
 			"response": []
 		},
 		{
+			"name": "Veranstaltung erstellen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"\",\r\n    \"datum\": \"09.09.1999\",\r\n    \"ort\": \"\",\r\n    \"preis\": \"0,00\",\r\n    \"beschreibung\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						""
+					]
+				},
+				"description": "Unter \"Body\" die gewünschten Daten eintragen"
+			},
+			"response": []
+		},
+		{
+			"name": "Highlights hinzufügen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"highlights\": [\r\n    {\r\n      \"überschrift\": \"Highlight 1\",\r\n      \"beschreibung\": \"Es passieren Dinge 1\"\r\n    },\r\n    {\r\n      \"überschrift\": \"Highlight 2\",\r\n      \"beschreibung\": \"Es passieren Dinge 2\"\r\n    }\r\n  ]\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId/highlights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId",
+						"highlights"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "veranstaltungsId = \\*gewünschte Veranstaltung\\*  \nHighlights im Body entsprechend anpassen oder hinzufügen"
+			},
+			"response": []
+		},
+		{
+			"name": "Veranstaltung importieren",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"createdOn\": 1696433072,\r\n\"createdBy\": \"Poly Veranstaltungen\",\r\n\"softwareVersion\": null,\r\n\"entry\": {\r\n\"title\": \"Beerpong Meisterschaft 2024\",\r\n\"beschreibung\": \"Die Beerpong Meisterschaft 2024 findet am 12.07.2024 vor dem Rewe statt. Startgebühr von 10 Euro!\",\r\n\"location\": \"Platz vor dem Rewe\",\r\n\"date\": \"2024-07-29\",\r\n\"price\": 10\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/import/veranstaltung",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"import",
+						"veranstaltung"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Veranstaltung bearbeiten",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"123\",\r\n    \"datum\": \"09.09.1999\",\r\n    \"ort\": \"\",\r\n    \"preis\": \"0,00\",\r\n    \"beschreibung\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "7"
+						}
+					]
+				},
+				"description": "VeranstaltungsID als Variable eintragen, unter \"Body\" die gewünschten Änderungen druchführen"
+			},
+			"response": []
+		},
+		{
+			"name": "Veranstaltung genehmigen",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/genehmigen/:veranstaltungId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						"genehmigen",
+						":veranstaltungId"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "3"
+						}
+					]
+				},
+				"description": "veranstaltungsId = \\*gewünschte veranstaltung\\*  \nGenehmigung wird in audit.txt dokumentiert."
+			},
+			"response": []
+		},
+		{
 			"name": "Highlights einer bestimmten Veranstaltung bearbeiten",
 			"request": {
 				"method": "PUT",
@@ -425,6 +421,34 @@
 						}
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Veranstaltung löschen",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/veranstaltungen/:veranstaltungId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"veranstaltungen",
+						":veranstaltungId"
+					],
+					"variable": [
+						{
+							"key": "veranstaltungId",
+							"value": "6"
+						}
+					]
+				},
+				"description": "Veranstaltungsid = *gewünschte Veranstaltung*"
 			},
 			"response": []
 		}
