@@ -148,28 +148,7 @@ app.put('/api/veranstaltungen/:veranstaltungId', (req, res) => {
     }
 });
 
-
-// Suche für Veranstaltungen
-app.get('/api/suche', (req, res) => {
-    const { stichwort } = req.query;
-    const veranstaltungen = AlleVeranstaltungen;
-
-    if (!stichwort) {
-        return res.status(400).json({ error: 'Suchbegriff fehlt' });
-    }
-
-    const gefundeneVeranstaltungen = veranstaltungen.filter(veranstaltung =>
-        veranstaltung.name.toLowerCase().includes(stichwort.toLowerCase()) ||
-        veranstaltung.ort.toLowerCase().includes(stichwort.toLowerCase())
-    );
-
-    if (gefundeneVeranstaltungen.length === 0) {
-        return res.json({ message: 'Keine Veranstaltungen gefunden' });
-    }
-
-    res.json(gefundeneVeranstaltungen);
-});
-
+// Suche
 app.get('/api/suche/:status', (req, res) => {
     const { stichwort } = req.query;
     const veranstaltungen = AlleVeranstaltungen;
@@ -270,13 +249,13 @@ app.post('/api/veranstaltungen/:veranstaltungId/highlights', (req, res) => {
     const veranstaltung = AlleVeranstaltungen.find((v) => v.id === veranstaltungId);
   
     if (!veranstaltung) {
-      return res.status(404).json({ error: 'Veranstaltung nicht gefunden' });
+      return res.status(404).json({ error: 'Veranstaltung nicht gefunden' });                       //  404, falls Veranstaltung mit gewählter ID nicht existiert 
     }
   
     const highlights = req.body.highlights;
   
     if (!highlights || !Array.isArray(highlights)) {
-      return res.status(400).json({ error: 'Highlights erforderlich und müssen ein Array sein' });
+      return res.status(400).json({ error: 'Highlights erforderlich und müssen ein Array sein' });  // 400, falls die Highlights nicht im richtigen Format übergeben werden
     }
   
     const neuesHighlights = [];
@@ -285,11 +264,11 @@ app.post('/api/veranstaltungen/:veranstaltungId/highlights', (req, res) => {
       const { überschrift, beschreibung } = highlight;
   
       if (!überschrift || !beschreibung) {
-        return res.status(400).json({ error: 'Überschrift und Beschreibung erforderlich' });
+        return res.status(400).json({ error: 'Überschrift und Beschreibung erforderlich' });        // Highlight darf nicht leer sein
       }
   
-      const neuesHighlightsHighlight = { überschrift, beschreibung };
-      veranstaltung.highlights.push(neuesHighlightsHighlight);
+      const neuesHighlightsHighlight = { überschrift, beschreibung };                               // Highlights werden übergeben
+      veranstaltung.highlights.push(neuesHighlightsHighlight); 
       neuesHighlights.push(neuesHighlightsHighlight);
       veranstaltung.highlightmenge = veranstaltung.highlights.length;
     }
