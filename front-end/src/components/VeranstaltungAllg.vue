@@ -67,7 +67,7 @@
         // Überprüfung, ob das Datum im Format DD-MM-YYYY vorliegt
         const matchDDMMYYYY = datumString.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
         if (matchDDMMYYYY) {
-          // Verwende toLocaleDateString, um das Datum im lokalen Format anzuzeigen
+          //toLocaleDateString verwenden, um das Datum im lokalen Format anzuzeigen
           const umgeformtesDatum = new Date(`${matchDDMMYYYY[3]}-${matchDDMMYYYY[2]}-${matchDDMMYYYY[1]}`);
           return umgeformtesDatum.toLocaleDateString();
         }

@@ -58,6 +58,7 @@ export default {
       },
     };
   },
+  
   async created() {
     try {
       const selectedId = this.$route.params.Id;
@@ -72,10 +73,10 @@ export default {
     console.error('Fehler beim Abrufen der spezifischen Veranstaltung:', error);
     // Umleiten auf eine 404-Seite im Fehlerfall
     this.$router.push('/404');
-  } 
-
-
+   } 
   },
+
+  //Abrufen der Veranstaltungsdetails und Highlights
   async mounted() {
     try {
       const veranstaltungId = this.$route.params.Id;
@@ -85,18 +86,12 @@ export default {
       const highlightsResponse = await axios.get(`/api/veranstaltungen/${veranstaltungId}/highlights`);
       this.selectedVeranstaltung.highlights = highlightsResponse.data;
 
-   /*   // Wiederholen Sie die gleiche Überprüfung hier
-    if (response.data && response.status === 200) {
-      this.selectedVeranstaltung = response.data;
-    } else {
-      // Umleiten auf eine 404-Seite, wenn die Veranstaltung nicht gefunden wird
-      this.$router.push('/404');
-    }*/
-
     } catch (error) {
       console.error('Fehler beim Abrufen der Veranstaltungsdetails und Highlights:', error);
     }
   },
+
+  //Methode für die Genehmigung der Veranstaltung
   methods: {
     async genehmigeVeranstaltung(veranstaltungId) {
       try {
@@ -118,9 +113,9 @@ export default {
       }).catch(err => {
         console.error('Fehler beim Kopieren des Links:', err);
       });
+     },
 
-
-    },
+    //Hinzufügen eines Highlights
     addHighlight() {
       if (!this.newHighlight.title || !this.newHighlight.description) {
         alert("Bitte füllen Sie alle Felder aus.");
@@ -133,16 +128,15 @@ export default {
             beschreibung: this.newHighlight.description,
           },
         ],
-      }).then(response => {
-        console.log("Highlight hinzugefügt", response);
-        this.newHighlight.title = '';
-        this.newHighlight.description = '';
-        this.reloadVeranstaltungData();
-      }).catch(error => {
-        console.error("Fehler beim Hinzufügen des Highlights", error);
-      });
-    },
-  
+          }).then(response => {
+            console.log("Highlight hinzugefügt", response);
+            this.newHighlight.title = '';
+            this.newHighlight.description = '';
+            this.reloadVeranstaltungData();
+          }).catch(error => {
+            console.error("Fehler beim Hinzufügen des Highlights", error);
+          });
+      },
 
   async reloadVeranstaltungData() {
       try {
@@ -150,14 +144,14 @@ export default {
         const response = await axios.get(`/api/veranstaltungen/${veranstaltungId}`);
         this.selectedVeranstaltung = response.data;
 
-        // Lade die Highlights neu
+        //Highlights erneut laden
         const highlightsResponse = await axios.get(`/api/veranstaltungen/${veranstaltungId}/highlights`);
         this.selectedVeranstaltung.highlights = [...highlightsResponse.data];
-    console.log("Veranstaltungsdaten wurden neu geladen!"); // Konsolenausgabe zur Überprüfung
-  } catch (error) {
-    console.error('Fehler beim erneuten Laden der Veranstaltungsdaten:', error);
-  }
-},
+        console.log("Veranstaltungsdaten wurden neu geladen!"); // Konsolenausgabe zur Überprüfung
+      } catch (error) {
+        console.error('Fehler beim erneuten Laden der Veranstaltungsdaten:', error);
+      }
+    },
   }
 };
 </script>

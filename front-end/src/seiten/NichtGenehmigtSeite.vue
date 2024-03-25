@@ -2,6 +2,15 @@
     <div>
       <h1>NICHT GENEHMIGT</h1>
 
+      <!-- Suchfeld -->
+      <div>
+          <form class="search-form" @submit.prevent="search" >
+            <input type="text" class="search-input" v-model="searchTerm" placeholder="Suche..." @keyup="search">
+          <button type="submit" class="search-button">Suche</button>
+        </form>
+        </div>
+      
+
       <div class="Veranstaltungsliste">
       <NichtGenehmigtKomponente v-for="Veranstaltung in AlleVeranstaltungen"
         :key="Veranstaltung.id"
@@ -12,7 +21,6 @@
         :Beschreibung="Veranstaltung.beschreibung"
         :Genehmigung="Veranstaltung.genehmigung"
         :veranstaltungId="Veranstaltung.id"
-     
       />
       <br>
     </div>
@@ -47,7 +55,6 @@
          this.AlleVeranstaltungen = AlleVeranstaltungen;
         },
 
-
   methods: {
     copyLinkToClipboard() {
       const url = window.location.href;
@@ -56,7 +63,37 @@
       }).catch(err => {
         console.error('Fehler beim Kopieren des Links:', err);
       });
-    }
-  }
-}
+    },
+
+ // Methode für die Suche
+    async search() {
+      try {
+          if (!this.searchTerm) {
+            const response = await axios.get('/api/veranstaltungen/nicht-genehmigt');
+            this.AlleVeranstaltungen = response.data;
+          } else {
+            const stichwort = this.searchTerm.toLowerCase();
+            const response = await axios.get(`/api/suche/${"nicht-genehmigt"}`, {
+              params: { stichwort },
+            });
+            // Überprüfen, ob eine Antwort vorhanden ist
+            if (response.data && response.data.length > 0) {
+              this.AlleVeranstaltungen = response.data;
+            } else {
+              // Setze AlleVeranstaltungen auf ein leeres Array und zeige eine Meldung an
+              this.AlleVeranstaltungen = [];
+              this.error = 'Keine Veranstaltungen gefunden.';
+            }
+          }
+        } catch (error) {
+          console.error('Fehler bei der Suche:', error.message);
+          this.error = 'Fehler bei der Kommunikation mit dem Server.';
+        }
+
+        this.isLoading = false;
+      },
+
+  
+    },
+  };
 </script>

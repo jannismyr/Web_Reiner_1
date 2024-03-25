@@ -61,7 +61,7 @@ export default {
       const response = await axios.get('/api/veranstaltungen/' + this.veranstaltung.id);
       let veranstaltungDaten = response.data;
 
-      // Konvertieren Sie das Datum in das richtige Format, falls nötig
+      // Konvertieren des Datums in das richtige Format, falls nötig
       if (veranstaltungDaten.datum) {
         veranstaltungDaten.datum = this.formatDate(veranstaltungDaten.datum);
       }

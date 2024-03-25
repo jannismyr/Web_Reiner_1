@@ -92,14 +92,16 @@ methods: {
             .then(response => {
               console.log('Antwort der API:', response.data);
 
-               // Zurücksetzen der Eingabefelder nach erfolgreichem Absenden des Formulars
+         // Zurücksetzen der Eingabefelder nach erfolgreichem Absenden des Formulars
           this.Veranstaltung.Name = '';
           this.Veranstaltung.Datum = '';
           this.Veranstaltung.Ort = '';
           this.Veranstaltung.Preis = '';
           this.Veranstaltung.Beschreibung = '';
-              // Füge hier weitere Aktionen nach dem Hinzufügen der Veranstaltung hinzu
+
+          alert('Veranstaltung erfolgreich erstellt!');
             })
+            
             .catch(error => {
               console.error('Fehler bei der Anfrage:', error);
             });

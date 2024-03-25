@@ -18,7 +18,7 @@
   </div>
 </div>
   
-
+<!-- Anzeige der Veranstaltungen -->
     <div class="Veranstaltungsliste">
       <VeranstaltungAllg v-for="Veranstaltung in AlleVeranstaltungen"
         :key="Veranstaltung.id"
@@ -55,6 +55,7 @@ export default {
       error: null,
     }
   },
+
   // Methode für die Suche
   methods: {
     async search() {
@@ -67,11 +68,11 @@ export default {
             const response = await axios.get(`/api/suche/${"genehmigt"}`, {
               params: { stichwort },
             });
-            // Überprüfen Sie, ob die Antwort Daten enthält
+            // Überprüfen, ob eine Antwort vorhanden ist
             if (response.data && response.data.length > 0) {
               this.AlleVeranstaltungen = response.data;
             } else {
-              // Setzen Sie AlleVeranstaltungen auf ein leeres Array und zeigen Sie eine Meldung an
+              // Setze AlleVeranstaltungen auf ein leeres Array und zeige eine Meldung an
               this.AlleVeranstaltungen = [];
               this.error = 'Keine Veranstaltungen gefunden.';
             }
@@ -84,7 +85,7 @@ export default {
         this.isLoading = false;
       },
 
-      // alle genehmigten Veranstaltungen werden vom Backend geladen
+    // alle genehmigten Veranstaltungen werden vom Backend geladen
     async fetchAlleVeranstaltungen() {
       this.isLoading = true;
       this.error = null;
@@ -112,12 +113,12 @@ export default {
 
     // Nach erfolgreichem Abrufen der Testdaten, aktualisieren Sie die Veranstaltungsliste
     await this.fetchAlleVeranstaltungen();
-  } catch (error) {
-    console.error("Fehler beim Generieren der Testdaten: ", error);
-  }
-}
-
+    } catch (error) {
+      console.error("Fehler beim Generieren der Testdaten: ", error);
+    }
+   }
   },
+
   created() {
     this.fetchAlleVeranstaltungen();
   },
