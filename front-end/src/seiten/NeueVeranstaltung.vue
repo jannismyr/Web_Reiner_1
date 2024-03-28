@@ -50,7 +50,7 @@ methods: {
     const eventDescription = this.Veranstaltung.Beschreibung;
 
 
-    let regex1 = /^(?!\s*$)[A-Za-z0-9\s]+$/
+    let regex1 = /^(?!\s*$)[A-Za-z0-9\s.,!äöüÄÖÜ?]+$/
     let regex2 = /^\d+(\.\d{1,2})?$/
 
     let errorMessage = null;
