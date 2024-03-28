@@ -95,7 +95,7 @@ export default {
         return `${parseInt(day)}.${parseInt(month)}.${year}`;
       } else {
         // DD.MM.YYYY Format, oder ungültiges Format
-        return dateString; // Keine Umwandlung nötig, oder nicht umwandelbar
+        return dateString; 
       }
     },
 
@@ -103,9 +103,7 @@ export default {
       try {
         const updateData = { ...this.veranstaltung };
         delete updateData.id;
-        // Angenommen, Zeitstempel existiert und soll entfernt werden
-        // delete updateData.Zeitstempel;
-
+    
         if (updateData.datum) {
           // Umwandeln in DD.MM.YYYY ohne führende Nullen für das Backend
           updateData.datum = this.formatDateToDDMMYYYY(updateData.datum);
