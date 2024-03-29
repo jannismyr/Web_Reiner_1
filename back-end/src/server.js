@@ -268,6 +268,11 @@ app.post('/api/veranstaltungen/:veranstaltungId/highlights', (req, res) => {
       }
   
       const neuesHighlightsHighlight = { überschrift, beschreibung };                               // Highlights werden übergeben
+     
+      if (!veranstaltung.highlights) {
+        veranstaltung.highlights = [];
+    }
+     
       veranstaltung.highlights.push(neuesHighlightsHighlight); 
       neuesHighlights.push(neuesHighlightsHighlight);
       veranstaltung.highlightmenge = veranstaltung.highlights.length;

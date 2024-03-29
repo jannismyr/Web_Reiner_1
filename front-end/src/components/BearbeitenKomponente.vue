@@ -104,11 +104,7 @@ export default {
         const updateData = { ...this.veranstaltung };
         delete updateData.id;
     
-        if (updateData.datum) {
-          // Umwandeln in DD.MM.YYYY ohne führende Nullen für das Backend
-          updateData.datum = this.formatDateToDDMMYYYY(updateData.datum);
-        }
-
+        
         await axios.put('/api/veranstaltungen/' + this.veranstaltung.id, updateData);
         alert('Veranstaltung erfolgreich aktualisiert!');
       } catch (error) {
