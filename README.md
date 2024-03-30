@@ -1,4 +1,4 @@
-# Projekt Neue Datenbank Konzepte
+# Projekt Webprogrammierung bei Reiner & Reiner
 ***
 ## Inhalt
 1.  [Allgemeine Informationen] (#Allgemeines)
@@ -7,8 +7,7 @@
 
 
 ## Allgemeines
-Dies ist ein Projetk von Simon Hofmann und Jannis Meyer für das Modul Neue Datenbankkonzepte an der DHBW Heidenheim. 
-Abgabe ist am 31.03.2024.
+Dies ist ein Projetk von Kai Faßbinder und Jannis Meyer für das Modul Webprogrammierung an der DHBW Heidenheim. Abgabe ist am 31.03.2024.
 Geschrieben wurde der Code ohne nennenswerte Vorkenntnisse mit Zuhilfenahme von Kursen auf Linkedin Learning (Vue), YouTube, den Vorlesungsunterlagen und Stackoverflow.
 Zur Fehlersuche wurden auch Tools wie Github Code, ChatGPT und Google Gemini eingesetzt.
 
@@ -42,7 +41,7 @@ Axios: version 1.6.2
  3) npm install -g @vue/cli (ggf. Vue 3 auswählen)
  3) npm install vue-router@4
  4) npm install axios
- 3) npm run serve
+ 5) npm run serve
  --> Frontend sollte auf http://localhost:8080/ starten, positive Rückmeldung über Konsole
 
  
