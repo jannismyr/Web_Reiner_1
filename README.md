@@ -1,4 +1,4 @@
-# Projekt Webprogrammierung bei Reiner & Reiner
+# Projekt Neue Datenbank Konzepte
 ***
 ## Inhalt
 1.  [Allgemeine Informationen] (#Allgemeines)
@@ -7,7 +7,8 @@
 
 
 ## Allgemeines
-Dies ist ein Projetk von Kai Faßbinder und Jannis Meyer für das Modul Webprogrammierung an der DHBW Heidenheim. Abgabe ist am 31.03.2024.
+Dies ist ein Projetk von Simon Hofmann und Jannis Meyer für das Modul Neue Datenbankkonzepte an der DHBW Heidenheim. 
+Abgabe ist am 31.03.2024.
 Geschrieben wurde der Code ohne nennenswerte Vorkenntnisse mit Zuhilfenahme von Kursen auf Linkedin Learning (Vue), YouTube, den Vorlesungsunterlagen und Stackoverflow.
 Zur Fehlersuche wurden auch Tools wie Github Code, ChatGPT und Google Gemini eingesetzt.
 
