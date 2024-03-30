@@ -38,7 +38,7 @@ Axios: version 1.6.2
  Front End:
  1) cd ./front-end
  2) npm install
- 3) npm install -g @vue/cli (Vue 3 auswählen)
+ 3) npm install -g @vue/cli (ggf. Vue 3 auswählen)
  3) npm install vue-router@4
  4) npm install axios
  3) npm run serve
