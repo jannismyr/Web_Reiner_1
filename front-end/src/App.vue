@@ -2,8 +2,6 @@
   <NavBar/>
 <router-view></router-view>
 <br><br><br><br>
-<router-link to="/veranstaltungen">
-  </router-link>
 </template>
 
 <script>
